@@ -54,7 +54,6 @@ class Game {
                 this.correctLetters.splice( index, 0, letter );
             };
         };
-        return indices;
     };
     
     score() {
