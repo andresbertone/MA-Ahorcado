@@ -1,6 +1,6 @@
 const Game = require('../src/Game');
 
-describe('Test Release 1', () => {
+describe('Tests Release 1', () => {
 
     describe('Login', () => {
         
@@ -13,7 +13,7 @@ describe('Test Release 1', () => {
 
     describe('Initial Configuration', () => {
         
-        it('Harcoded Word', () => {
+        it('Harcoded word', () => {
             let game = new Game();
             expect(game.inputWord('Agilidad')).toBe('Palabra guardada');
         });
@@ -39,26 +39,23 @@ describe('Test Release 1', () => {
             game.inputWord('Agilidad');
             expect(game.chooseLetter('f')).toBe('Letra incorrecta');
         });
-
     });
 
-    describe.skip('Score', () => {
 
-        it('Response "You won"', () => {
+    describe('Final Score', () => {
+
+        it('Return "Ganaste"', () => {
             let game = new Game();
             game.inputWord('Agilidad');
             game.chooseLetter('a');
             game.chooseLetter('g');
+            game.chooseLetter('f'); // letra incorrecta
             game.chooseLetter('i');
             game.chooseLetter('l');
-            game.chooseLetter('i');
+            game.chooseLetter('t'); // letra incorrecta
             game.chooseLetter('d');
-            game.chooseLetter('a');
-            game.chooseLetter('d');
-            expect(game.score()).toBe('Ganaste');       // Terminar test
-        });
+            expect(game.score()).toBe('Ganaste');
+        }); 
     });
-
-
 
 });

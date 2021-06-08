@@ -251,7 +251,7 @@
     "yargs-parser": "^20.2.7"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest ahorcado.test.js"
   },
   "repository": {
     "type": "git",
