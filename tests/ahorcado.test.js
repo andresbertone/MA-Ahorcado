@@ -95,4 +95,25 @@ describe('Tests Release 2', () => {
         });
 
     });
+
+    describe('Start to play', () => {
+        
+        it.skip('Choose correct word', () => {
+            let game = new Game();
+            game.login('Jaimito');
+            game.setAvailableWords(['Agilidad', 'Fabricante', 'Elefante', 'Jirafa']);
+            expect(game.chooseWord('Jirafa')).toBe('Ganaste');
+        });
+
+        it('Choose incorrect word in many attempt', () => {
+            let game = new Game();
+            game.login('Jaimito');
+            game.setMaximumNumberOfErrorsInWordsInput(2);
+            game.setAvailableWords(['Agilidad', 'Fabricante', 'Elefante', 'Jirafa']);
+            game.chooseWord('Mono');
+            expect(game.chooseWord('Mono')).toBe('Perdiste');
+        });
+        
+
+    });
 });

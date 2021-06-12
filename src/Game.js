@@ -9,6 +9,7 @@ class Game {
     availableWords; //Ingreso de múltiples palabras para adivinar
     maximumNumberOfErrorsInLetters; //Número maximo de errores al ingresar letras
     maximumNumberOfErrorsInWordsInput; //Número maximo de errores al arriesgar la palabra
+    failAttemptsWordChoose; //Intentos que falló al arriesgar la palabra
     timeLimitInMinutes; //Tiempo limite de juego en minutos
 
     constructor() {
@@ -16,6 +17,25 @@ class Game {
         this.correctLetters = [];
         this.wrongLetters = [];
         this.availableWords = [];
+        this.failAttemptsWordChoose = 0;
+    };
+
+
+    chooseWord( selectedWord ) {
+        const ix = this.getRandomInt(0, this.availableWords.length - 1);
+        this.inputWord(this.availableWords[ix]);
+        if ( this.word === selectedWord ) {
+            return 'Ganaste';
+        } else {
+            this.failAttemptsWordChoose++;
+            if ( this.failAttemptsWordChoose === this.maximumNumberOfErrorsInWordsInput) {
+                return 'Perdiste';
+            };
+        };
+    };
+
+    getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max + 1 - min)) + min;
     };
 
     setTimeLimit( timeLimit ) {
@@ -28,6 +48,7 @@ class Game {
 
     setMaximumNumberOfErrorsInWordsInput( maximumNumberOfErrorsInWordsInput ) {
         if ( maximumNumberOfErrorsInWordsInput ) {
+            this.maximumNumberOfErrorsInWordsInput = maximumNumberOfErrorsInWordsInput;
             return 'Se han guardado la cantidad máxima de errores al arriesgar la palabra'; 
         };
         return 'Debe ingresar la cantidad máxima de errores';
