@@ -76,7 +76,23 @@ describe('Tests Release 2', () => {
         
         it('Multiple words', () => {
             let game = new Game();
-            expect(game.inputWord(['Agilidad', 'Fabricante', 'Elefante', 'Jirafa'])).toBe('Palabras guardadas');
+            expect(game.setAvailableWords(['Agilidad', 'Fabricante', 'Elefante', 'Jirafa'])).toBe('Palabras guardadas');
         });
+
+        it('Maximum number of errors in letters', () => {
+            let game = new Game();
+            expect(game.setMaximumNumberOfErrorsInLetters(6)).toBe('Se han guardado la cantidad máxima de errores al ingresar letras');
+        });
+
+        it('Maximum number of errors in words input', () => {
+            let game = new Game();
+            expect(game.setMaximumNumberOfErrorsInWordsInput(3)).toBe('Se han guardado la cantidad máxima de errores al arriesgar la palabra');
+        });
+
+        it('Time limit in minutes', () => {
+            let game = new Game();
+            expect(game.setTimeLimit(3)).toBe('Tiempo límite de juego ingresado correctamente');
+        });
+
     });
 });
