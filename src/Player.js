@@ -1,8 +1,11 @@
 class Player {
     
+    name;
 
-
-    login() {
+    login( name ) {
+        if ( name ) {
+            return `Hola ${name}`;
+        };
         return 'Hola Jugador Anónimo';
     }
 }

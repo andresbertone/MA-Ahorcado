@@ -13,23 +13,22 @@ class Game {
         this.wrongLetters = [];
     };
 
-    login() {
-        return this.player.login();
+    login( name ) {
+        return this.player.login( name );
     };
 
     inputWord( wordInput ) {
         if ( wordInput ) {
-            this.word = wordInput.toLowerCase();
+            this.word = wordInput;
             return 'Palabra guardada';
         };
     };
 
     chooseLetter( letter ) {
         if ( letter ) {
-            letter.toLowerCase();
-            let index = this.word.indexOf( letter );
+            let index = this.word.toLowerCase().indexOf( letter.toLowerCase() );
             if ( index !== -1 ) {
-                this.howManyTimesLetterAppear( letter, index );
+                this.correctLetters.splice( index, 0, letter );
                 return 'Letra correcta';
             };
             this.wrongLetters.push( letter );
@@ -39,9 +38,9 @@ class Game {
 
     letterPosition( letter ) {
         if ( letter ) {
-            let index = this.word.indexOf( letter );
+            let index = this.word.toLowerCase().indexOf( letter.toLowerCase() );
             if ( index !== -1 ) {
-                return index;
+                return this.howManyTimesLetterAppear( letter, index );
             };
         };
     };
@@ -49,17 +48,17 @@ class Game {
     howManyTimesLetterAppear( letter, index ) {
         let indices = [];
         for ( index; index < this.word.length; index++ ) {
-            if ( this.word[ index ] === letter.toLowerCase() ) {
+            if ( this.word[ index ].toLowerCase() === letter.toLowerCase() ) {
                 indices.push( index );
-                this.correctLetters.splice( index, 0, letter );
             };
         };
+        return indices;
     };
     
     score() {
         if ( this.correctLetters.every( letter => this.word.includes( letter ) ) ) {
             return 'Ganaste';
-        }
+        };
     };
 
 }

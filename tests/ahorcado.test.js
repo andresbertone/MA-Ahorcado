@@ -1,6 +1,6 @@
 const Game = require('../src/Game');
 
-describe('Tests Release 1', () => {
+describe.skip('Tests Release 1', () => {
 
     describe('Login', () => {
         
@@ -31,7 +31,7 @@ describe('Tests Release 1', () => {
         it("Letter position", () => {
             let game = new Game();
             game.inputWord('Agilidad');
-            expect(game.letterPosition('l')).toBe(3);
+            expect(game.letterPosition('I')).toEqual(expect.arrayContaining([2, 4]));
         });
 
         it('Incorrect letter', () => {
@@ -58,4 +58,25 @@ describe('Tests Release 1', () => {
         }); 
     });
 
+});
+
+
+describe('Tests Release 2', () => {
+
+    describe('Login', () => {
+        
+        it('Known player', () => {
+            let game = new Game();
+            expect(game.login('Jaimito')).toBe('Hola Jaimito');
+        });
+    });
+
+
+    describe('Initial Configuration', () => {
+        
+        it('Multiple words', () => {
+            let game = new Game();
+            expect(game.inputWord(['Agilidad', 'Fabricante', 'Elefante', 'Jirafa'])).toBe('Palabras guardadas');
+        });
+    });
 });
