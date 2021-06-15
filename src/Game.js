@@ -31,7 +31,6 @@ class Game {
                 return inputLetter;
             };
         };
-        return;
     };
 
     chooseRandomWord() {

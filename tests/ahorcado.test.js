@@ -1,7 +1,7 @@
 const Game = require('../src/Game');
 const Ranking = require('../src/Ranking');
 
-describe.skip('Tests Release 1', () => {
+describe('Tests Release 1', () => {
 
     describe('Login', () => {
         
