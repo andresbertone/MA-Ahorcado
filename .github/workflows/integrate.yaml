@@ -1,4 +1,4 @@
-name: integracion continua
+name: Integracion Continua
 
 on: 
   push:
@@ -14,4 +14,3 @@ jobs:
           node-version: 14.16.1
       - run: npm ci
       - run: npm test
-      - run: npm start
