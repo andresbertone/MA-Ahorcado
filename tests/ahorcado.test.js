@@ -1,5 +1,5 @@
 const Game = require('../src/Game');
-const SharedFunction = require('../src/sharedFunction');
+const Ranking = require('../src/Ranking');
 
 describe.skip('Tests Release 1', () => {
 
@@ -161,6 +161,9 @@ describe('Tests Release 2', () => {
         });
         
         it('Ranking', () => {
+
+            let ranking = new Ranking();
+
             let game1 = new Game();
             game1.login('Jaimito');
             game1.setAvailableWords(['Agilidad']);
@@ -170,7 +173,7 @@ describe('Tests Release 2', () => {
             game1.chooseLetter('i');
             game1.chooseLetter('l');
             game1.chooseLetter('d');
-            SharedFunction.saveGame(game1);
+            ranking.saveGame(game1);
 
             let game2 = new Game();
             game2.login('Pablito');
@@ -179,10 +182,10 @@ describe('Tests Release 2', () => {
             game2.chooseLetter('m');
             game2.chooseLetter('o');
             game2.chooseLetter('n');
-            SharedFunction.saveGame(game2);
+            ranking.saveGame(game2);
 
 
-            expect(SharedFunction.getRanking()).toEqual(['Jaimito', 'Pablito']);
+            expect(ranking.getRanking()).toEqual(['Jaimito', 'Pablito']);
         });
 
     });

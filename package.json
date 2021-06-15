@@ -251,7 +251,8 @@
     "yargs-parser": "^20.2.7"
   },
   "scripts": {
-    "test": "jest ahorcado.test.js"
+    "test": "jest ahorcado.test.js",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
