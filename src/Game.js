@@ -21,14 +21,37 @@ class Game {
     };
 
 
-    chooseWord( selectedWord ) {
-        const ix = this.getRandomInt(0, this.availableWords.length - 1);
-        this.inputWord(this.availableWords[ix]);
+    getScoreInNumbers() {
+        return this.correctLetters.length;
+    };
+
+    getIncorrectLetter( inputLetter ) {
+        if ( inputLetter ) {
+            if ( !this.word.includes( inputLetter ) ) {
+                return inputLetter;
+            };
+        };
+        return;
+    };
+
+    chooseRandomWord() {
+        let index = 0;
+        if ( this.availableWords.length > 1 ) {
+            index = this.getRandomInt( 0, this.availableWords.length - 1 );
+        } else {
+            index = 0;
+        }
+        this.inputWord( this.availableWords[index] );
+        return this.availableWords.includes( this.word );
+    };
+
+
+    chooseRiskyWord( selectedWord ) {
         if ( this.word === selectedWord ) {
             return 'Ganaste';
         } else {
             this.failAttemptsWordChoose++;
-            if ( this.failAttemptsWordChoose === this.maximumNumberOfErrorsInWordsInput) {
+            if ( this.failAttemptsWordChoose === this.maximumNumberOfErrorsInWordsInput ) {
                 return 'Perdiste';
             };
         };
@@ -56,6 +79,7 @@ class Game {
 
     setMaximumNumberOfErrorsInLetters( maximumNumberOfErrorsInLetters ) {
         if ( maximumNumberOfErrorsInLetters ) {
+            this.maximumNumberOfErrorsInLetters = maximumNumberOfErrorsInLetters;
             return 'Se han guardado la cantidad máxima de errores al ingresar letras'; 
         };
         return 'Debe ingresar la cantidad máxima de errores';
@@ -88,6 +112,9 @@ class Game {
                 return 'Letra correcta';
             };
             this.wrongLetters.push( letter );
+            if ( this.wrongLetters.length >= this.maximumNumberOfErrorsInLetters ) {
+                return 'Perdiste';
+            };
             return 'Letra incorrecta';
         };
     };
@@ -111,7 +138,7 @@ class Game {
         return indices;
     };
     
-    score() {
+    getScore() {
         if ( this.correctLetters.every( letter => this.word.includes( letter ) ) ) {
             return 'Ganaste';
         };

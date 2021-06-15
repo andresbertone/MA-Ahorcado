@@ -4,7 +4,8 @@ class Player {
 
     login( name ) {
         if ( name ) {
-            return `Hola ${name}`;
+            this.name = name;
+            return `Hola ${this.name}`;
         };
         return 'Hola Jugador Anónimo';
     }
