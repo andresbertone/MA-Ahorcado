@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs: 
-  ci_to_master: 
+  ci_to_main: 
     runs-on: windows-2019
     steps:
       - uses: actions/checkout@v2
