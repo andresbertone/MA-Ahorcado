@@ -14,3 +14,4 @@ jobs:
             node-version: 14.16.1
         - run: npm ci
         - run: npm test
+        - run: npm run test:coverage
