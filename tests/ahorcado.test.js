@@ -207,9 +207,15 @@ describe('Test Release 3', () => {
 
     describe('Initial Configuration', () => {
         
-        it('Select Difficulty', () => { // 1: Fácil - 2: Medio - 3: Dificil 
+        it('Select Difficulty', () => { // 1: Fácil - 2: Intermedio - 3: Difícil 
             let game = new Game();
-            expect(game.selectDifficulty(1)).toBe('Dificultad elegida: Fácil');
+            expect(game.setDifficulty(1)).toBe('Dificultad elegida: Fácil');
+        });
+
+        it('Select word length for each difficulty', () => { // 1: Fácil - 2: Intermedio - 3: Difícil 
+            let game = new Game();
+            expect(game.setLengthWordForEachDifficulty([{difficulty: 1, length: 4}, {difficulty: 2, length: 6}, {difficulty: 3, length: 8}]))
+                .toBe('Fácil: 4, Intermedio: 6, Difícil: 8');
         });
         
     });

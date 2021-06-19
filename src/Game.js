@@ -11,6 +11,8 @@ class Game {
     maximumNumberOfErrorsInWordsInput; //Número maximo de errores al arriesgar la palabra
     failAttemptsWordChoose; //Intentos que falló al arriesgar la palabra
     timeLimitInMinutes; //Tiempo limite de juego en minutos
+    difficulty; //Dificultad del juego
+    lengthForEachDifficulty; //Logitud mínima de caracteres por dificultad
 
     constructor() {
         this.player = new Player();
@@ -18,8 +20,42 @@ class Game {
         this.wrongLetters = [];
         this.availableWords = [];
         this.failAttemptsWordChoose = 0;
+        this.difficulty = 1; //Por defecto será Fácil (1)
+        this.lengthForEachDifficulty = [];
     };
 
+
+    setLengthWordForEachDifficulty( difficulties ) {
+        if( difficulties ){ 
+            difficulties.forEach(( objDifficulty ) => {
+                this.lengthForEachDifficulty.push(objDifficulty);
+            });
+            if( this.lengthForEachDifficulty.length === 3) {
+                return `Fácil: ${this.lengthForEachDifficulty[0].length}, ` +
+                       `Intermedio: ${this.lengthForEachDifficulty[1].length}, ` +
+                       `Difícil: ${this.lengthForEachDifficulty[2].length}`;
+            };
+        };
+    };
+
+    setDifficulty( difficulty ) {
+        if ( difficulty ) {
+            let nameDifficulty;
+            switch ( difficulty ) {
+                case 1:
+                    nameDifficulty = 'Fácil';
+                    break;
+                case 2:
+                    nameDifficulty = 'Intermedio';
+                    break;
+                case 3:
+                    nameDifficulty = 'Difícil';
+                    break;
+            };
+            this.difficulty = difficulty;
+            return `Dificultad elegida: ${nameDifficulty}`;
+        };
+    };
 
     getScoreInNumbers() {
         return this.correctLetters.length;
