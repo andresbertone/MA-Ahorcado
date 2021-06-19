@@ -96,6 +96,10 @@ class Game {
         return this.player.login( name );
     };
 
+    loginUserAndPassword ( username, password ) {
+        return this.player.loginUserAndPassword( username, password );
+    };
+
     inputWord( wordInput ) {
         if ( wordInput ) {
             this.word = wordInput;

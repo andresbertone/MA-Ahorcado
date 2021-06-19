@@ -1,6 +1,20 @@
 class Player {
     
     name;
+    users; //Posee los usuarios que existen en el juego
+    userLogged;
+
+    constructor() {
+        this.users = [{ //Inicializa una lista de usuarios registrados
+            username: 'admin',
+            password: 'adminpassword'
+        }, {
+            username: 'invitado',
+            password: 'invitadopassword'
+        }];
+
+        this.userLogged = {}; //Almacena el usuario y contraseña del usuario logueado
+    }
 
     login( name ) {
         if ( name ) {
@@ -9,6 +23,21 @@ class Player {
         };
         return 'Hola Jugador Anónimo';
     }
+
+    loginUserAndPassword( username, password ) {
+        let found = false;
+        if ( username && password ) {
+            this.users.forEach(user => {
+                if ( user.username === username && user.password === password ) {
+                    this.userLogged = { username, password };
+                    found = true;
+                };
+            });
+            return found;
+        };
+    }
+
+
 }
 
 module.exports = Player;

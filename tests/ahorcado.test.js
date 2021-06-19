@@ -191,3 +191,29 @@ describe('Tests Release 2', () => {
     });
 
 });
+
+
+describe('Test Release 3', () => {
+
+    describe('Login', () => {
+        
+        it('Login with username and password', () => {
+            let game = new Game();
+            expect(game.loginUserAndPassword('admin', 'adminpassword')).toBe(true);
+        });
+
+    });
+
+
+    describe('Initial Configuration', () => {
+        
+        it('Select Difficulty', () => { // 1: Fácil - 2: Medio - 3: Dificil 
+            let game = new Game();
+            expect(game.selectDifficulty(1)).toBe('Dificultad elegida: Fácil');
+        });
+        
+    });
+
+
+
+});
