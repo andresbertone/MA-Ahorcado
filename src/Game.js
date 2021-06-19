@@ -27,9 +27,7 @@ class Game {
 
     setLengthWordForEachDifficulty( difficulties ) {
         if( difficulties ){ 
-            difficulties.forEach(( objDifficulty ) => {
-                this.lengthForEachDifficulty.push(objDifficulty);
-            });
+            this.lengthForEachDifficulty = difficulties;
             if( this.lengthForEachDifficulty.length === 3) {
                 return `Fácil: ${this.lengthForEachDifficulty[0].length}, ` +
                        `Intermedio: ${this.lengthForEachDifficulty[1].length}, ` +
