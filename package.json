@@ -1,6 +1,7 @@
 {
   "devDependencies": {
-    "jest": "^27.0.4"
+    "jest": "^27.0.4",
+    "jshint": "^2.13.0"
   },
   "name": "MA-Ahorcado",
   "description": "",
