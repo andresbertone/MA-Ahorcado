@@ -111,7 +111,8 @@ describe('Tests Release 2', () => {
             game.login('Jaimito');
             game.setAvailableWords(['Jirafa']);
             game.chooseRandomWord();
-            expect(game.chooseRiskyWord('Jirafa')).toBe('Ganaste');
+            game.chooseRiskyWord('Jirafa')
+            expect(game.getScore()).toBe('Ganaste');
         });
         
         it('Choose incorrect word in many attempt', () => {
@@ -121,7 +122,8 @@ describe('Tests Release 2', () => {
             game.setAvailableWords(['Agilidad', 'Fabricante', 'Elefante', 'Jirafa']);
             game.chooseRandomWord();
             game.chooseRiskyWord('Mono');
-            expect(game.chooseRiskyWord('Mono')).toBe('Perdiste');
+            game.chooseRiskyWord('Mono');
+            expect(game.getScore()).toBe('Perdiste');
         });
 
         it('Choose an incorrect letter and show it', () => {
@@ -139,7 +141,8 @@ describe('Tests Release 2', () => {
             game.setAvailableWords(['Agilidad']);
             game.chooseRandomWord();
             game.chooseLetter('r');
-            expect(game.chooseLetter('r')).toBe('Perdiste');
+            game.chooseLetter('r');
+            expect(game.getScore()).toBe('Perdiste');
         });
 
     });
@@ -157,7 +160,7 @@ describe('Tests Release 2', () => {
             game.chooseLetter('i');
             game.chooseLetter('l');
             game.chooseLetter('d');
-            expect(game.getScoreInNumbers()).toEqual(5);
+            expect(game.getScoreInNumbers()).toEqual(8);
         });
         
         it('Ranking', () => {
@@ -216,10 +219,24 @@ describe('Test Release 3', () => {
             let game = new Game();
             expect(game.setLengthWordForEachDifficulty([{difficulty: 1, length: 4}, {difficulty: 2, length: 6}, {difficulty: 3, length: 8}]))
                 .toBe('Fácil: 4, Intermedio: 6, Difícil: 8');
-        });
-        
+        });    
     });
+    
 
+    describe('Final Score', () => {
+
+        it('Show score about risky correct word', () => {
+            let game = new Game();
+            game.loginUserAndPassword('admin', 'adminpassword');
+            game.inputWord('Agilidad');
+            game.chooseLetter('a');
+            game.chooseLetter('g');
+            game.chooseLetter('i');
+            game.chooseLetter('l');
+            game.chooseRiskyWord('Agilidad');
+            expect(game.getScoreInNumbers()).toEqual(16);
+        });
+    });
 
 
 });

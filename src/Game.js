@@ -13,6 +13,8 @@ class Game {
     timeLimitInMinutes; //Tiempo limite de juego en minutos
     difficulty; //Dificultad del juego
     lengthForEachDifficulty; //Logitud mínima de caracteres por dificultad
+    totalScore; // Guarda el puntaje total
+    riskedWord;
 
     constructor() {
         this.player = new Player();
@@ -22,6 +24,8 @@ class Game {
         this.failAttemptsWordChoose = 0;
         this.difficulty = 1; //Por defecto será Fácil (1)
         this.lengthForEachDifficulty = [];
+        this.totalScore = 0;
+        this.riskedWord;
     };
 
 
@@ -55,10 +59,7 @@ class Game {
         };
     };
 
-    getScoreInNumbers() {
-        return this.correctLetters.length;
-    };
-
+    
     getIncorrectLetter( inputLetter ) {
         if ( inputLetter ) {
             if ( !this.word.includes( inputLetter ) ) {
@@ -78,18 +79,16 @@ class Game {
         return this.availableWords.includes( this.word );
     };
 
-
+    
     chooseRiskyWord( selectedWord ) {
         if ( this.word === selectedWord ) {
-            return 'Ganaste';
+            this.riskedWord = selectedWord;
+            this.totalScore += 10;
         } else {
             this.failAttemptsWordChoose++;
-            if ( this.failAttemptsWordChoose === this.maximumNumberOfErrorsInWordsInput ) {
-                return 'Perdiste';
-            };
         };
     };
-
+    
     getRandomInt(min, max) {
         return Math.floor(Math.random() * (max + 1 - min)) + min;
     };
@@ -101,7 +100,7 @@ class Game {
         };
         return 'Debe ingresar el tiempo';
     };
-
+    
     setMaximumNumberOfErrorsInWordsInput( maximumNumberOfErrorsInWordsInput ) {
         if ( maximumNumberOfErrorsInWordsInput ) {
             this.maximumNumberOfErrorsInWordsInput = maximumNumberOfErrorsInWordsInput;
@@ -117,7 +116,7 @@ class Game {
         };
         return 'Debe ingresar la cantidad máxima de errores';
     };
-
+    
     setAvailableWords( availableWords ) {
         if ( availableWords ) {
             this.availableWords = availableWords;
@@ -140,22 +139,21 @@ class Game {
             return 'Palabra guardada';
         };
     };
-
+    
     chooseLetter( letter ) {
         if ( letter ) {
             let index = this.word.toLowerCase().indexOf( letter.toLowerCase() );
             if ( index !== -1 ) {
                 this.correctLetters.splice( index, 0, letter );
+                let quantityAppears = this.howManyTimesLetterAppear( letter, index ).length; 
+                this.totalScore += quantityAppears;
                 return 'Letra correcta';
             };
             this.wrongLetters.push( letter );
-            if ( this.wrongLetters.length >= this.maximumNumberOfErrorsInLetters ) {
-                return 'Perdiste';
-            };
             return 'Letra incorrecta';
         };
     };
-
+    
     letterPosition( letter ) {
         if ( letter ) {
             let index = this.word.toLowerCase().indexOf( letter.toLowerCase() );
@@ -176,11 +174,21 @@ class Game {
     };
     
     getScore() {
-        if ( this.correctLetters.every( letter => this.word.includes( letter ) ) ) {
-            return 'Ganaste';
+        if ( this.wrongLetters.length >= this.maximumNumberOfErrorsInLetters || 
+             this.failAttemptsWordChoose === this.maximumNumberOfErrorsInWordsInput ) {
+            return 'Perdiste';
+        };
+
+        if ( this.word === this.riskedWord ||
+             this.correctLetters.every( letter => this.word.includes( letter )) ) {
+             return 'Ganaste';
         };
     };
 
+    getScoreInNumbers() {
+        return this.totalScore;
+    };
+    
 }
 
 module.exports = Game;
