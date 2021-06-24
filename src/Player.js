@@ -20,7 +20,7 @@ class Player {
         if ( name ) {
             this.name = name;
             return `Hola ${this.name}`;
-        };
+        }
         return 'Hola Jugador Anónimo';
     }
 
@@ -31,10 +31,10 @@ class Player {
                 if ( user.username === username && user.password === password ) {
                     this.userLogged = { username, password };
                     found = true;
-                };
+                }
             });
             return found;
-        };
+        }
     }
 
 
