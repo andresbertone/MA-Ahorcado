@@ -15,4 +15,4 @@ jobs:
         - run: npm ci
         - run: npm test
         - run: npm run test:coverage
-        - run: npm run analize 
+        - run: npm run hint --silent
