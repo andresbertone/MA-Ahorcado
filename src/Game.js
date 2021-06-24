@@ -2,19 +2,45 @@ const Player = require('./Player');
 
 class Game {
 
-    player; //Jugador
-    word; //Palabra a adivinar
-    correctLetters; //Guarda las letras erróneas ingresadas
-    wrongLetters; //Guarda las letras erróneas ingresadas
-    availableWords; //Ingreso de múltiples palabras para adivinar
-    maximumNumberOfErrorsInLetters; //Número maximo de errores al ingresar letras
-    maximumNumberOfErrorsInWordsInput; //Número maximo de errores al arriesgar la palabra
-    failAttemptsWordChoose; //Intentos que falló al arriesgar la palabra
-    timeLimitInMinutes; //Tiempo limite de juego en minutos
-    difficulty; //Dificultad del juego
-    lengthForEachDifficulty; //Logitud mínima de caracteres por dificultad
-    totalScore; // Guarda el puntaje total
-    riskedWord;
+    player() {
+        return this.player;
+    } //Jugador
+    word() {
+        return this.word;
+    } //Palabra a adivinar
+    correctLetters() {
+        return this.correctLetters;
+    } //Guarda las letras erróneas ingresadas
+    wrongLetters() {
+        return this.wrongLetters;
+    } //Guarda las letras erróneas ingresadas
+    availableWords() {
+        return this.availableWords;
+    } //Ingreso de múltiples palabras para adivinar
+    maximumNumberOfErrorsInLetters() {
+        return this.maximumNumberOfErrorsInLetters;
+    } //Número maximo de errores al ingresar letras
+    maximumNumberOfErrorsInWordsInput() {
+        return this.maximumNumberOfErrorsInWordsInput;
+    } //Número maximo de errores al arriesgar la palabra
+    failAttemptsWordChoose() {
+        return this.failAttemptsWordChoose;
+    } //Intentos que falló al arriesgar la palabra
+    timeLimitInMinutes() {
+        return this.timeLimitInMinutes;
+    } //Tiempo limite de juego en minutos
+    difficulty() {
+        return this.difficulty;
+    } //Dificultad del juego
+    lengthForEachDifficulty() {
+        return this.lengthForEachDifficulty;
+    } //Logitud mínima de caracteres por dificultad
+    totalScore() {
+        return this.totalScore;
+    } // Guarda el puntaje total
+    riskedWord() { 
+        return this.riskedWord;
+    } //Palabra arriesgada
 
     constructor() {
         this.player = new Player();
