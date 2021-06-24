@@ -253,7 +253,9 @@
   "scripts": {
     "test": "jest ahorcado.test.js",
     "test:coverage": "jest --coverage",
-    "hint": "jshint src/Game.js"
+    "hintGame": "jshint src/Game.js",
+    "hintPlayer": "jshint src/Player.js",
+    "hintRanking": "jshint src/Ranking.js"
   },
   "repository": {
     "type": "git",

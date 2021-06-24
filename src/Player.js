@@ -1,8 +1,14 @@
 class Player {
     
-    name;
-    users; //Posee los usuarios que existen en el juego
-    userLogged;
+    name() {
+        return this.name;
+    }
+    users() {
+        return this.users;
+    } //Posee los usuarios que existen en el juego
+    userLogged() {
+        return this.userLogged;
+    }
 
     constructor() {
         this.users = [{ //Inicializa una lista de usuarios registrados

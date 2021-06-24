@@ -1,7 +1,9 @@
 
 class Ranking {
 
-    games;
+    games() {
+        return this.games;
+    }
 
     constructor() {
         this.games = [];
