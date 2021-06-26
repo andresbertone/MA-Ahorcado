@@ -1,7 +1,9 @@
 {
   "devDependencies": {
     "jest": "^27.0.5",
-    "jshint": "^2.13.0"
+    "jshint": "^2.13.0",
+    "webpack": "^5.40.0",
+    "webpack-cli": "^4.7.2"
   },
   "name": "MA-Ahorcado",
   "description": "",
@@ -255,7 +257,9 @@
     "test:coverage": "jest --coverage",
     "hintGame": "jshint src/Game.js",
     "hintPlayer": "jshint src/Player.js",
-    "hintRanking": "jshint src/Ranking.js"
+    "hintRanking": "jshint src/Ranking.js",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
