@@ -86,72 +86,29 @@ function cogerTecladoFisico(evObject) {
  * Función para comprobar si la tecla pulsada es correcta
  */
 window.comprobarTecla = function(letraUsuario) {
-  // Recorremos todo el array de la palabra a adivinar comparando cada posición con la letra que ingresó el usuario
-
-   //for (var i = 0; i < palabraAdivinar.length; i++) {
-    // Si la letra del usuario es igual a la letra en i posición, la guardamos en i posición de palabraMostrar
-        const correctLetters = game.letterPosition(letraUsuario);
-        if (correctLetters) {
-            correctLetters.forEach((position) => {
-                palabraMostrar[position] = letraUsuario;
-                document.getElementById("tecla" + letraUsuario).disabled = true;
-                document.getElementById("tecla" + letraUsuario).className = "teclaDeshabilitada";
-                teclasBloqueadas.push("tecla" + letraUsuario);
-                puntuacion += 25;
-    
-            });
-        }
-        /* if (letraUsuario == palabraAdivinar[i]) {
-            palabraMostrar[i] = letraUsuario;
-            // Bloqueamos la tecla deshabilitando el botón y cambiando su clase
-            document.getElementById("tecla" + letraUsuario).disabled = true;
-            document.getElementById("tecla" + letraUsuario).className = "teclaDeshabilitada";
-        
-            // Añadimos la tecla a un array para posteriormente trabajar con ellas
-            teclasBloqueadas.push("tecla" + letraUsuario);
-            puntuacion += 25;
-        }  */
-     //}
+  
+  // Obtengo la/s posiciones de la letra en la palabra
+  const correctLetters = game.letterPosition(letraUsuario);
+  if (correctLetters) {
+    correctLetters.forEach((position) => {
+      palabraMostrar[position] = letraUsuario;
+      document.getElementById("tecla" + letraUsuario).disabled = true;
+      document.getElementById("tecla" + letraUsuario).className = "teclaDeshabilitada";
+      teclasBloqueadas.push("tecla" + letraUsuario);
+      puntuacion += 25;
+      });
+  }
 
   // Si no está la letra....
-        const correctLetter = game.chooseLetter(letraUsuario) === 'Letra Correcta';
+  const correctLetter = game.chooseLetter(letraUsuario) === 'Letra correcta';
+  if (!correctLetter) {
+    if (numIntentos > 0) {
+        numIntentos -= 1;
+        puntuacion -= 15;
+      }
+
         
-        if (!correctLetter) {
-            if (numIntentos > 0) {
-                numIntentos -= 1;
-                puntuacion -= 15;
-              }
-
-              if (numIntentos == 5) {
-                document.getElementById('imagen').src = 'img/svg/cabeza.svg';
-              } else if (numIntentos == 4) {
-                document.getElementById('imagen').src = 'img/svg/cuerpo.svg';
-              } else if (numIntentos == 3) {
-                document.getElementById('imagen').src = 'img/svg/brazoIzq.svg';
-              } else if (numIntentos == 2) {
-                document.getElementById('imagen').src = 'img/svg/brazoDer.svg';
-              } else if (numIntentos == 1) {
-                document.getElementById('imagen').src = 'img/svg/piernaIzq.svg';
-              } else if (numIntentos == 0) {
-                document.getElementById('imagen').src = 'img/svg/piernaDer.svg';
-              }
-          
-              // Bloqueamos la tecla deshabilitando el botón y cambiando su clase
-              document.getElementById("tecla" + letraUsuario).disabled = true;
-              document.getElementById("tecla" + letraUsuario).className = "teclaDeshabilitada";
-          
-              // Añadimos la tecla a un array para posteriormente trabajar con ellas
-              teclasBloqueadas.push("tecla" + letraUsuario);
-        }
-  //if (!palabraAdivinar.includes(letraUsuario)) {
-    // Restamos un intento
-    /* if (numIntentos > 0) {
-      numIntentos -= 1;
-      puntuacion -= 15;
-    } */
-
-    // Dependiendo del fallo, mostramos una imagen u otra
-    /* if (numIntentos == 5) {
+    if (numIntentos == 5) {
       document.getElementById('imagen').src = 'img/svg/cabeza.svg';
     } else if (numIntentos == 4) {
       document.getElementById('imagen').src = 'img/svg/cuerpo.svg';
@@ -170,9 +127,8 @@ window.comprobarTecla = function(letraUsuario) {
     document.getElementById("tecla" + letraUsuario).className = "teclaDeshabilitada";
 
     // Añadimos la tecla a un array para posteriormente trabajar con ellas
-    teclasBloqueadas.push("tecla" + letraUsuario); */
-  //}
-
+    teclasBloqueadas.push("tecla" + letraUsuario);
+  }
   estadoPartida();
   actualizarDatosPantalla();
 }
@@ -200,7 +156,7 @@ function estadoPartida() {
     // a encontrar cuando hayamos perdido
     palabraMostrar = palabraAdivinar;
     // Cambiamos el texto del botón de reiniciar a "Reintentar"
-    nodoBotonReiniciar.textContent = "Siguiente";
+    //nodoBotonReiniciar.textContent = "Siguiente";
   }
 }
 
@@ -250,9 +206,7 @@ window.reiniciarPartida = function() {
   teclasBloqueadas = [];
 
   // Lanzamos de nuevo la función de iniciar la partida
-  
   iniciarPartida();
-  
 }
 
 // Al cargar la página hacemos que capture el evento de tecla pulsada
