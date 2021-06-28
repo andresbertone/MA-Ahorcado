@@ -75,12 +75,12 @@ function actualizarDatosPantalla() {
  * comprueba que no se haya pulsado todavía y se la pasa a la función
  * comprobarTecla
  */
-function cogerTecladoFisico(evObject) {
+/* function cogerTecladoFisico(evObject) {
   var capturado = String.fromCharCode(evObject.which);
   if (!teclasBloqueadas.includes("tecla" + capturado)) {
     comprobarTecla(capturado);
   }
-}
+} */
 
 /**
  * Función para comprobar si la tecla pulsada es correcta
