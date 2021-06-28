@@ -255,9 +255,9 @@
   "scripts": {
     "test": "jest ahorcado.test.js",
     "test:coverage": "jest --coverage",
-    "hintGame": "jshint src/Game.js",
-    "hintPlayer": "jshint src/Player.js",
-    "hintRanking": "jshint src/Ranking.js",
+    "hintGame": "jshint src/model/Game.js",
+    "hintPlayer": "jshint src/model/Player.js",
+    "hintRanking": "jshint src/model/Ranking.js",
     "hintIndex": "jshint src/index.js",
     "dev": "webpack --mode development",
     "build": "webpack --mode production"

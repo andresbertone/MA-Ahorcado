@@ -1,4 +1,4 @@
-import Game from "./Game";
+import Game from "./model/Game";
 
 // Inicializamos un juego nuevo
 let game = new Game();
@@ -7,7 +7,8 @@ game.setAvailableWords(['Agilidad', 'Fabricante', 'Elefante', 'Jirafa', 'Cabra',
 game.setMaximumNumberOfErrorsInLetters(6);
 game.chooseRandomWord();
 
-let puntuacion = 0; // 25 puntos si aciertas; -15 puntos si fallas
+//let puntuacion = 0; // 25 puntos si aciertas; -15 puntos si fallas
+let puntuacion = 0; 
 let numIntentos = game.maximumNumberOfErrorsInLetters;
 let numIntentosOriginales = numIntentos;
 let palabraAdivinar = [];
@@ -86,7 +87,7 @@ function cogerTecladoFisico(evObject) {
  */
 window.comprobarTecla = function(letraUsuario) {
   
-  // Obtengo la/s posiciones de la letra en la palabra
+  // Obtengo la/s posicion/es de la letra en la palabra
   const correctLetters = game.letterPosition(letraUsuario);
   if (correctLetters) {
     correctLetters.forEach((position) => {
@@ -106,7 +107,6 @@ window.comprobarTecla = function(letraUsuario) {
         puntuacion -= 15;
       }
 
-        
     if (numIntentos === 5) {
       document.getElementById('imagen').src = 'img/svg/cabeza.svg';
     } else if (numIntentos === 4) {
@@ -143,7 +143,6 @@ function estadoPartida() {
 
     // Cambiamos el texto del botón de reiniciar a "Siguiente" y mostramos una nueva imagen
     document.getElementById('imagen').src = 'img/svg/victoria.svg';
-    nodoBotonReiniciar.textContent = "Siguiente";
   }
 
   // Si no quedan intentos lanzamos una alerta
@@ -154,8 +153,6 @@ function estadoPartida() {
     // Igualamos palabraMostrar a palabraAdivinar para mostrar la palabra
     // a encontrar cuando hayamos perdido
     palabraMostrar = palabraAdivinar;
-    // Cambiamos el texto del botón de reiniciar a "Reintentar"
-    //nodoBotonReiniciar.textContent = "Siguiente";
   }
 }
 

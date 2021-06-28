@@ -1,5 +1,5 @@
-const Game = require('../src/Game');
-const Ranking = require('../src/Ranking');
+const Game = require('../src/model/Game');
+const Ranking = require('../src/model/Ranking');
 
 describe('Tests Release 1', () => {
 
