@@ -6,7 +6,6 @@ let game = new Game();
 game.setAvailableWords(['Agilidad', 'Fabricante', 'Elefante', 'Jirafa', 'Cabra', 'Periferico', 'Teclado']);
 game.setMaximumNumberOfErrorsInLetters(6);
 game.chooseRandomWord();
-console.log(game.word);
 
 let puntuacion = 0; // 25 puntos si aciertas; -15 puntos si fallas
 let numIntentos = game.maximumNumberOfErrorsInLetters;
@@ -108,17 +107,17 @@ window.comprobarTecla = function(letraUsuario) {
       }
 
         
-    if (numIntentos == 5) {
+    if (numIntentos === 5) {
       document.getElementById('imagen').src = 'img/svg/cabeza.svg';
-    } else if (numIntentos == 4) {
+    } else if (numIntentos === 4) {
       document.getElementById('imagen').src = 'img/svg/cuerpo.svg';
-    } else if (numIntentos == 3) {
+    } else if (numIntentos === 3) {
       document.getElementById('imagen').src = 'img/svg/brazoIzq.svg';
-    } else if (numIntentos == 2) {
+    } else if (numIntentos === 2) {
       document.getElementById('imagen').src = 'img/svg/brazoDer.svg';
-    } else if (numIntentos == 1) {
+    } else if (numIntentos === 1) {
       document.getElementById('imagen').src = 'img/svg/piernaIzq.svg';
-    } else if (numIntentos == 0) {
+    } else if (numIntentos === 0) {
       document.getElementById('imagen').src = 'img/svg/piernaDer.svg';
     }
 
@@ -131,7 +130,7 @@ window.comprobarTecla = function(letraUsuario) {
   }
   estadoPartida();
   actualizarDatosPantalla();
-}
+};
 
 /**
  * Función para comprobar si ya ha acabado el juego
@@ -140,7 +139,7 @@ function estadoPartida() {
   // Si no quedan guiones...
   if (!palabraMostrar.includes('_')) {
     // Bloqueamos todas las teclas para que el usuario no pueda clickar las restantes
-    bloquearTodasTeclas()
+    bloquearTodasTeclas();
 
     // Cambiamos el texto del botón de reiniciar a "Siguiente" y mostramos una nueva imagen
     document.getElementById('imagen').src = 'img/svg/victoria.svg';
@@ -148,9 +147,9 @@ function estadoPartida() {
   }
 
   // Si no quedan intentos lanzamos una alerta
-  if (numIntentos == 0) {
+  if (numIntentos === 0) {
     // Bloqueamos todas las teclas para que el usuario no pueda clickar las restantes
-    bloquearTodasTeclas()
+    bloquearTodasTeclas();
 
     // Igualamos palabraMostrar a palabraAdivinar para mostrar la palabra
     // a encontrar cuando hayamos perdido
@@ -181,13 +180,12 @@ function bloquearTodasTeclas() {
  */
 window.reiniciarPartida = function() {
   game.chooseRandomWord();
-  console.log(game.word);
   palabraAdivinar = [];
   palabraMostrar = [];
   numIntentos = numIntentosOriginales;
 
   // Si reinicias la partida la puntuación se restablecerá
-  if (nodoBotonReiniciar.textContent == "Reiniciar") {
+  if (nodoBotonReiniciar.textContent === "Reiniciar") {
     puntuacion = 0;
   }
 
@@ -207,12 +205,12 @@ window.reiniciarPartida = function() {
 
   // Lanzamos de nuevo la función de iniciar la partida
   iniciarPartida();
-}
+};
 
 // Al cargar la página hacemos que capture el evento de tecla pulsada
 window.onload = function() {
   document.onkeypress = cogerTecladoFisico;
-}
+};
 
 // Llamamos a iniciarPartida() para iniciar la partida
 iniciarPartida();

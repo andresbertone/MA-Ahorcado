@@ -258,6 +258,7 @@
     "hintGame": "jshint src/Game.js",
     "hintPlayer": "jshint src/Player.js",
     "hintRanking": "jshint src/Ranking.js",
+    "hintIndex": "jshint src/index.js",
     "dev": "webpack --mode development",
     "build": "webpack --mode production"
   },

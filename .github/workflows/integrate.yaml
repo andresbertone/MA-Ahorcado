@@ -18,3 +18,4 @@ jobs:
         - run: npm run hintGame
         - run: npm run hintPlayer
         - run: npm run hintRanking
+        - run: npm run hintIndex
