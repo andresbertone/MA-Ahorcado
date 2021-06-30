@@ -7,8 +7,7 @@ game.setAvailableWords(['Agilidad', 'Fabricante', 'Elefante', 'Jirafa', 'Cabra',
 game.setMaximumNumberOfErrorsInLetters(6);
 game.chooseRandomWord();
 
-//let puntuacion = 0; // 25 puntos si aciertas; -15 puntos si fallas
-let puntuacion = 0; 
+let puntuacion = 0; // 25 puntos si aciertas; -15 puntos si fallas
 let numIntentos = game.maximumNumberOfErrorsInLetters;
 let numIntentosOriginales = numIntentos;
 let palabraAdivinar = [];
@@ -25,8 +24,6 @@ let nodoBotonReiniciar = document.querySelector('#BotonReiniciar');
 
 function iniciarPartida() {
 
-  // Almacenamos la palabra aleatoria en palabraAleatoria seleccionando la palabra
-  // de la lista de palabras con la posicion aleatoria
   var palabraAleatoria = game.word;
 
   // Guardamos en tamanioPalabraAleatoria el tamaño de la palabra seleccionada aleatoriamente
@@ -56,6 +53,16 @@ function iniciarPartida() {
 }
 
 /**
+ * Función para arriesgar la palabra
+ */
+window.arriesgarPalabra = function () {
+  const riskyWord = document.getElementById('riskFieldWord').value;
+  if ( riskyWord.toLowerCase() === game.word.toLowerCase() ) {
+    gameWin();
+  } 
+}
+
+/**
  * Función para dibujar los cambios en pantalla
  */
 function actualizarDatosPantalla() {
@@ -69,18 +76,6 @@ function actualizarDatosPantalla() {
   // Mostramos la puntuación del usuario
   nodoPuntuacion.textContent = puntuacion + " PUNTOS";
 }
-
-/**
- * Función que captura la tecla pulsada mediante el teclado físico,
- * comprueba que no se haya pulsado todavía y se la pasa a la función
- * comprobarTecla
- */
-/* function cogerTecladoFisico(evObject) {
-  var capturado = String.fromCharCode(evObject.which);
-  if (!teclasBloqueadas.includes("tecla" + capturado)) {
-    comprobarTecla(capturado);
-  }
-} */
 
 /**
  * Función para comprobar si la tecla pulsada es correcta
@@ -130,7 +125,7 @@ window.comprobarTecla = function(letraUsuario) {
   }
   estadoPartida();
   actualizarDatosPantalla();
-};
+}
 
 /**
  * Función para comprobar si ya ha acabado el juego
@@ -138,14 +133,9 @@ window.comprobarTecla = function(letraUsuario) {
 function estadoPartida() {
   // Si no quedan guiones...
   if (!palabraMostrar.includes('_')) {
-    // Bloqueamos todas las teclas para que el usuario no pueda clickar las restantes
-    bloquearTodasTeclas();
-
-    // Cambiamos el texto del botón de reiniciar a "Siguiente" y mostramos una nueva imagen
-    document.getElementById('imagen').src = 'img/svg/victoria.svg';
+    gameWin();
   }
 
-  // Si no quedan intentos lanzamos una alerta
   if (numIntentos === 0) {
     // Bloqueamos todas las teclas para que el usuario no pueda clickar las restantes
     bloquearTodasTeclas();
@@ -154,6 +144,15 @@ function estadoPartida() {
     // a encontrar cuando hayamos perdido
     palabraMostrar = palabraAdivinar;
   }
+}
+
+function gameWin() {
+  // Bloqueamos todas las teclas para que el usuario no pueda clickar las restantes
+  bloquearTodasTeclas();
+  palabraMostrar = palabraAdivinar;
+  // Mostramos una nueva imagen
+  document.getElementById('imagen').src = 'img/svg/victoria.svg';
+  actualizarDatosPantalla();
 }
 
 /**
@@ -200,14 +199,9 @@ window.reiniciarPartida = function() {
   // desbloqueado las teclas
   teclasBloqueadas = [];
 
-  // Lanzamos de nuevo la función de iniciar la partida
+  document.getElementById('riskFieldWord').value = '';
+
   iniciarPartida();
-};
+}
 
-// Al cargar la página hacemos que capture el evento de tecla pulsada
-window.onload = function() {
-  document.onkeypress = cogerTecladoFisico;
-};
-
-// Llamamos a iniciarPartida() para iniciar la partida
 iniciarPartida();

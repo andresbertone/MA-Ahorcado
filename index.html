@@ -15,7 +15,6 @@
         <img src="img/svg/horca.svg" alt="muñeco" id="imagen" >
       </div>
       <div class="juegoDiv">
-        <h1 id="pista"></h1>
         <h2 class="intentosH2">
           <span id="intentos"></span>/<span id="intentosOriginales"></span>
         </h2>
@@ -51,9 +50,9 @@
           <button type="button" class="tecla" id="teclam" value="M" onclick="comprobarTecla('m');">M</button>
         </div>
       </div>
-    </div>
-    <input type="text">          
-      <a type="button" class="tecla pointer" id="riskFieldWord">Arriesgar Palabra</a>
+    </div> 
+    <input type="text" id="riskFieldWord">          
+      <a type="button" class="tecla pointer" onclick="arriesgarPalabra()">Arriesgar Palabra</a>
     </input>
     <footer>
       <div>
