@@ -21,6 +21,7 @@ let nodoIntentos = document.querySelector('#intentos');
 let nodoIntentosOriginales = document.querySelector('#intentosOriginales');
 let nodoPuntuacion = document.querySelector('#puntuacionH2');
 let nodoBotonReiniciar = document.querySelector('#BotonReiniciar');
+let stateGame = document.getElementById('stateGame');
 
 
 /**
@@ -103,6 +104,7 @@ let nodoBotonReiniciar = document.querySelector('#BotonReiniciar');
   // Si reinicias la partida la puntuación se restablecerá
   if (nodoBotonReiniciar.textContent === "Reiniciar") {
     puntuacion = 0;
+    stateGame.innerHTML = '';
   }
 
   // Restablecemos la imagen y el texto del botón de reinicio
@@ -198,7 +200,7 @@ function estadoPartida() {
   if (numIntentos === 0) {
     // Bloqueamos todas las teclas para que el usuario no pueda clickar las restantes
     bloquearTodasTeclas();
-
+    stateGame.innerHTML = 'PERDISTE';
     // Igualamos palabraMostrar a palabraAdivinar para mostrar la palabra
     // a encontrar cuando hayamos perdido
     palabraMostrar = palabraAdivinar;
@@ -214,6 +216,8 @@ function gameWin() {
   palabraMostrar = palabraAdivinar;
   // Mostramos una nueva imagen
   document.getElementById('imagen').src = 'img/svg/victoria.svg';
+  stateGame.innerHTML = "GANASTE";
+
   actualizarDatosPantalla();
 }
 
@@ -227,6 +231,8 @@ function gameLost() {
     // Igualamos palabraMostrar a palabraAdivinar para mostrar la palabra
     // a encontrar cuando hayamos perdido
     palabraMostrar = palabraAdivinar;
+
+    stateGame.innerHTML = 'PERDISTE';
 
     document.getElementById('imagen').src = 'img/svg/cabeza.svg';
     document.getElementById('imagen').src = 'img/svg/cuerpo.svg';

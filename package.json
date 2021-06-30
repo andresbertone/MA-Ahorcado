@@ -262,7 +262,8 @@
     "hintRanking": "jshint src/model/Ranking.js",
     "hintIndex": "jshint src/index.js",
     "dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "atdd": "node tests/atdd.js"
   },
   "repository": {
     "type": "git",
