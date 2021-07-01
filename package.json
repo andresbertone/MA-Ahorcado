@@ -257,14 +257,10 @@
   "scripts": {
     "test": "jest ahorcado.test.js",
     "test:coverage": "jest --coverage",
-    "hintGame": "jshint src/model/Game.js",
-    "hintPlayer": "jshint src/model/Player.js",
-    "hintRanking": "jshint src/model/Ranking.js",
-    "hintIndex": "jshint src/index.js",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "atdd": "node tests/atdd.js",
-    "executeHint": "npm run hintGame && npm run hintRanking && npm run hintPlayer && npm run hintIndex"
+    "executeHint": "jshint src/model/Player.js && jshint src/model/Game.js && jshint src/model/Ranking.js && jshint src/index.js"
   },
   "repository": {
     "type": "git",
