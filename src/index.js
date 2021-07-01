@@ -7,11 +7,11 @@ game.setAvailableWords(['Agilidad', 'Fabricante', 'Elefante', 'Jirafa', 'Cabra',
 game.setMaximumNumberOfErrorsInLetters(6);
 game.setMaximumNumberOfErrorsInWordsInput(3);
 game.chooseRandomWord();
+game.failAttemptsWordChoose = 0;
 
 let puntuacion = 0; // 25 puntos si aciertas; -15 puntos si fallas
 let numIntentos = game.maximumNumberOfErrorsInLetters;
 let numIntentosOriginales = numIntentos;
-game.failAttemptsWordChoose = 1;
 let palabraAdivinar = [];
 let palabraMostrar = [];
 let teclasBloqueadas = [];
@@ -20,7 +20,6 @@ let nodoResultado = document.querySelector('#resultado').firstChild;
 let nodoIntentos = document.querySelector('#intentos');
 let nodoIntentosOriginales = document.querySelector('#intentosOriginales');
 let nodoPuntuacion = document.querySelector('#puntuacionH2');
-let nodoBotonReiniciar = document.querySelector('#BotonReiniciar');
 let stateGame = document.getElementById('stateGame');
 
 
@@ -28,19 +27,21 @@ let stateGame = document.getElementById('stateGame');
  * Función para arriesgar la palabra
  */
  window.arriesgarPalabra = function () {
-  const riskyWord = document.getElementById('riskFieldWord').value;
+  const riskyWord = document.getElementById('riskFieldWord').value.toLowerCase();
   if ( !riskyWord ) {
     return;
   }
-  if ( riskyWord.toLowerCase() === game.word.toLowerCase() ) {
+  game.chooseRiskyWord(riskyWord);
+  const score = game.getScore();
+
+  if (score === 'Ganaste') {
     gameWin();
-  } else if (game.failAttemptsWordChoose >= game.maximumNumberOfErrorsInWordsInput ) {
+  } else if (score === 'Perdiste') {
     gameLost();
-  } else {
-      game.failAttemptsWordChoose++;
-  }
+  } 
+  
   document.getElementById('riskFieldWord').value = '';
-};
+}; 
 
 /**
  * Función para comprobar si la tecla pulsada es correcta
@@ -97,25 +98,24 @@ let stateGame = document.getElementById('stateGame');
  */
  window.reiniciarPartida = function() {
   game.chooseRandomWord();
-  palabraAdivinar = [];
-  palabraMostrar = [];
+  clearVariables();
   numIntentos = numIntentosOriginales;
 
   // Si reinicias la partida la puntuación se restablecerá
-  if (nodoBotonReiniciar.textContent === "Reiniciar") {
-    puntuacion = 0;
-    stateGame.innerHTML = '';
-  }
+  puntuacion = 0;
+  stateGame.innerHTML = '';
 
-  // Restablecemos la imagen y el texto del botón de reinicio
-  nodoBotonReiniciar.textContent = "Reiniciar";
+  // Restablecemos la imagen
   document.getElementById('imagen').src = 'img/svg/horca.svg';
 
   // Vamos recorriendo el array de teclasBloqueadas para restablecerlas
-  for (var i = 0; i < teclasBloqueadas.length; i++) {
+  for (let i = 0; i < teclasBloqueadas.length; i++) {
     document.getElementById(teclasBloqueadas[i]).disabled = false;
     document.getElementById(teclasBloqueadas[i]).className = "tecla";
   }
+
+  document.getElementById('riskedWordButton').className = "tecla";
+  document.getElementById('riskedWordButton').disabled = false;
 
   // Vaciamos el array de teclas bloqueadas una vez se hayan
   // desbloqueado las teclas
@@ -132,27 +132,29 @@ let stateGame = document.getElementById('stateGame');
  */
  function bloquearTodasTeclas() {
   // Guardamos en un array todos los botones con la clase tecla
-  var teclas = document.querySelectorAll('button.tecla');
+  let teclas = document.querySelectorAll('button.tecla');
 
   // Recorremos la lista y vamos deshabilitando las teclas, cambiando su estilo
   // y las añadimos a la lista de teclas bloqueadas
-  for (var i = 0; i < teclas.length; i++) {
+  for (let i = 0; i < teclas.length; i++) {
     teclas[i].disabled = true;
     document.getElementById(teclas[i].id).className = "teclaDeshabilitada";
     teclasBloqueadas.push(teclas[i].id);
   }
+
+  document.getElementById('riskedWordButton').className = "teclaDeshabilitada";
 }
 
 function iniciarPartida() {
 
-  var palabraAleatoria = game.word;
+  let palabraAleatoria = game.word;
 
   // Guardamos en tamanioPalabraAleatoria el tamaño de la palabra seleccionada aleatoriamente
-  var tamanioPalabraAleatoria = game.word.length;
+  let tamanioPalabraAleatoria = game.word.length;
 
   // Guardamos en palabraAdivinar (array) cada uno de los caracteres de la palabra aleatoria
   // En palabraMostrar guardaremos tantos guiones como caracteres tiene la palabra aleatoria
-  for (var i = 0; i < tamanioPalabraAleatoria; i++) {
+  for (let i = 0; i < tamanioPalabraAleatoria; i++) {
     // Si el caracter elegido no es una letra...
     if (!palabraAleatoria.charAt(i).match(/[a-zñA-ZÑ]/)) {
       // Introducimos en la lista de la palabraAdivinar y palabraMostrar el caracter
@@ -225,23 +227,28 @@ function gameWin() {
  * Función que pierde el juego
  */
 function gameLost() {
-    // Bloqueamos todas las teclas para que el usuario no pueda clickar las restantes
-    bloquearTodasTeclas();
+  // Bloqueamos todas las teclas para que el usuario no pueda clickar las restantes
+  bloquearTodasTeclas();
 
-    // Igualamos palabraMostrar a palabraAdivinar para mostrar la palabra
-    // a encontrar cuando hayamos perdido
-    palabraMostrar = palabraAdivinar;
+  // Igualamos palabraMostrar a palabraAdivinar para mostrar la palabra
+  // a encontrar cuando hayamos perdido
+  palabraMostrar = palabraAdivinar;
 
-    stateGame.innerHTML = 'PERDISTE';
+  stateGame.innerHTML = 'PERDISTE';
 
-    document.getElementById('imagen').src = 'img/svg/cabeza.svg';
-    document.getElementById('imagen').src = 'img/svg/cuerpo.svg';
-    document.getElementById('imagen').src = 'img/svg/brazoIzq.svg';
-    document.getElementById('imagen').src = 'img/svg/brazoDer.svg';
-    document.getElementById('imagen').src = 'img/svg/piernaIzq.svg';
-    document.getElementById('imagen').src = 'img/svg/piernaDer.svg';
-    
-    actualizarDatosPantalla();
+  document.getElementById('imagen').src = 'img/svg/cabeza.svg';
+  document.getElementById('imagen').src = 'img/svg/cuerpo.svg';
+  document.getElementById('imagen').src = 'img/svg/brazoIzq.svg';
+  document.getElementById('imagen').src = 'img/svg/brazoDer.svg';
+  document.getElementById('imagen').src = 'img/svg/piernaIzq.svg';
+  document.getElementById('imagen').src = 'img/svg/piernaDer.svg';
+  
+  actualizarDatosPantalla();
+}
+
+function clearVariables() {
+  palabraAdivinar = [];
+  palabraMostrar = [];
 }
 
 

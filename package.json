@@ -263,7 +263,8 @@
     "hintIndex": "jshint src/index.js",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "atdd": "node tests/atdd.js"
+    "atdd": "node tests/atdd.js",
+    "executeHint": "npm run hintGame && npm run hintRanking && npm run hintPlayer && npm run hintIndex"
   },
   "repository": {
     "type": "git",

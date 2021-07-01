@@ -40,6 +40,7 @@
   text-transform: uppercase;
   animation: teclas 1s;
   width: 7%;
+  cursor: pointer;
 }
 
 .teclaDeshabilitada {

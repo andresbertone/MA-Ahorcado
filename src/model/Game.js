@@ -96,18 +96,20 @@ class Game {
 
     chooseRandomWord() {
         let index = 0;
+        this.availableWords = this.availableWords.map(word => word.toLowerCase());
         if ( this.availableWords.length > 1 ) {
             index = this.getRandomInt( 0, this.availableWords.length - 1 );
         } else {
             index = 0;
         }
-        this.inputWord( this.availableWords[index] );
+        this.inputWord( this.availableWords[index].toLowerCase() );
         return this.availableWords.includes( this.word );
     }
 
     
     chooseRiskyWord( selectedWord ) {
-        if ( this.word === selectedWord ) {
+        selectedWord = selectedWord.toLowerCase();
+        if ( this.word.toLowerCase() === selectedWord ) {
             this.riskedWord = selectedWord;
             this.totalScore += 10;
         } else {
@@ -200,15 +202,23 @@ class Game {
     }
     
     getScore() {
-        if ( this.wrongLetters.length >= this.maximumNumberOfErrorsInLetters || 
-             this.failAttemptsWordChoose === this.maximumNumberOfErrorsInWordsInput ) {
-            return 'Perdiste';
+
+        if (this.word === this.riskedWord) {
+            return 'Ganaste';
         }
 
-        if ( this.word === this.riskedWord ||
-             this.correctLetters.every( letter => this.word.includes( letter )) ) {
-             return 'Ganaste';
-        }
+        if ( this.wrongLetters.length >= this.maximumNumberOfErrorsInLetters || 
+             this.failAttemptsWordChoose >= this.maximumNumberOfErrorsInWordsInput ) {
+                 
+            return 'Perdiste';
+       }
+
+       if ( !this.riskedWord && this.correctLetters.length > 0 && 
+            this.correctLetters.every( letter => this.word.includes( letter )) 
+          ) {            
+            return 'Ganaste';
+       }   
+
     }
 
     getScoreInNumbers() {
