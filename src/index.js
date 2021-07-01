@@ -1,20 +1,14 @@
 import Game from "./model/Game";
 
 // Inicializamos un juego nuevo
-let game = new Game();
+let game;
 
-game.setAvailableWords(['Agilidad', 'Fabricante', 'Elefante', 'Jirafa', 'Cabra', 'Periferico', 'Teclado']);
-game.setMaximumNumberOfErrorsInLetters(6);
-game.setMaximumNumberOfErrorsInWordsInput(3);
-game.chooseRandomWord();
-game.failAttemptsWordChoose = 0;
-
-let puntuacion = 0; // 25 puntos si aciertas; -15 puntos si fallas
-let numIntentos = game.maximumNumberOfErrorsInLetters;
-let numIntentosOriginales = numIntentos;
-let palabraAdivinar = [];
-let palabraMostrar = [];
-let teclasBloqueadas = [];
+let puntuacion; // 25 puntos si aciertas; -15 puntos si fallas
+let numIntentos;
+let numIntentosOriginales;
+let palabraAdivinar;
+let palabraMostrar;
+let teclasBloqueadas; 
 
 let nodoResultado = document.querySelector('#resultado').firstChild;
 let nodoIntentos = document.querySelector('#intentos');
@@ -56,7 +50,6 @@ let stateGame = document.getElementById('stateGame');
       document.getElementById("tecla" + letraUsuario).disabled = true;
       document.getElementById("tecla" + letraUsuario).className = "teclaDeshabilitada";
       teclasBloqueadas.push("tecla" + letraUsuario);
-      puntuacion += 25;
       });
   }
 
@@ -65,7 +58,6 @@ let stateGame = document.getElementById('stateGame');
   if (!correctLetter) {
     if (numIntentos > 0) {
         numIntentos -= 1;
-        puntuacion -= 15;
       }
 
     if (numIntentos === 5) {
@@ -97,12 +89,10 @@ let stateGame = document.getElementById('stateGame');
  * Función para reiniciar la partida sin recargar la web entera y así ahorrar recursos
  */
  window.reiniciarPartida = function() {
-  game.chooseRandomWord();
-  clearVariables();
-  numIntentos = numIntentosOriginales;
 
-  // Si reinicias la partida la puntuación se restablecerá
+  numIntentos = numIntentosOriginales;
   puntuacion = 0;
+  game.totalScore = 0;
   stateGame.innerHTML = '';
 
   // Restablecemos la imagen
@@ -146,6 +136,21 @@ let stateGame = document.getElementById('stateGame');
 }
 
 function iniciarPartida() {
+
+  game = new Game();
+
+  game.setAvailableWords(['Agilidad']);
+  game.setMaximumNumberOfErrorsInLetters(6);
+  game.setMaximumNumberOfErrorsInWordsInput(3);
+  game.chooseRandomWord();
+  game.failAttemptsWordChoose = 0;
+
+  puntuacion = 0; // 25 puntos si aciertas; -15 puntos si fallas
+  numIntentos = game.maximumNumberOfErrorsInLetters;
+  numIntentosOriginales = numIntentos;
+  palabraAdivinar = [];
+  palabraMostrar = [];
+  teclasBloqueadas = [];
 
   let palabraAleatoria = game.word;
 
@@ -207,6 +212,7 @@ function estadoPartida() {
     // a encontrar cuando hayamos perdido
     palabraMostrar = palabraAdivinar;
   }
+  puntuacion = game.getScoreInNumbers();
 }
 
 /**
@@ -219,6 +225,7 @@ function gameWin() {
   // Mostramos una nueva imagen
   document.getElementById('imagen').src = 'img/svg/victoria.svg';
   stateGame.innerHTML = "GANASTE";
+  puntuacion = game.getScoreInNumbers();
 
   actualizarDatosPantalla();
 }
@@ -242,13 +249,9 @@ function gameLost() {
   document.getElementById('imagen').src = 'img/svg/brazoDer.svg';
   document.getElementById('imagen').src = 'img/svg/piernaIzq.svg';
   document.getElementById('imagen').src = 'img/svg/piernaDer.svg';
+  puntuacion = game.getScoreInNumbers();
   
   actualizarDatosPantalla();
-}
-
-function clearVariables() {
-  palabraAdivinar = [];
-  palabraMostrar = [];
 }
 
 

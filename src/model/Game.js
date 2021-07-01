@@ -108,9 +108,8 @@ class Game {
 
     
     chooseRiskyWord( selectedWord ) {
-        selectedWord = selectedWord.toLowerCase();
-        if ( this.word.toLowerCase() === selectedWord ) {
-            this.riskedWord = selectedWord;
+        this.riskedWord = selectedWord.toLowerCase();
+        if ( this.word.toLowerCase() === this.riskedWord ) { 
             this.totalScore += 10;
         } else {
             this.failAttemptsWordChoose++;
@@ -204,12 +203,12 @@ class Game {
     getScore() {
 
         if (this.word === this.riskedWord) {
+            this.riskedWord = undefined;   
             return 'Ganaste';
-        }
+        } 
 
         if ( this.wrongLetters.length >= this.maximumNumberOfErrorsInLetters || 
-             this.failAttemptsWordChoose >= this.maximumNumberOfErrorsInWordsInput ) {
-                 
+             this.failAttemptsWordChoose >= this.maximumNumberOfErrorsInWordsInput ) {  
             return 'Perdiste';
        }
 
