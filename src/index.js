@@ -139,7 +139,7 @@ function iniciarPartida() {
 
   game = new Game();
 
-  game.setAvailableWords(['Agilidad']);
+  game.setAvailableWords(['Agilidad', 'Fabricante', 'Jirafa', 'Cabra', 'Periferico', 'Avion']);
   game.setMaximumNumberOfErrorsInLetters(6);
   game.setMaximumNumberOfErrorsInWordsInput(3);
   game.chooseRandomWord();
