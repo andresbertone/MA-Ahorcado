@@ -1,0 +1,19 @@
+name: Integracion Continua
+
+on: 
+  push:
+    branches: [ main ]
+
+jobs: 
+    ci_to_main: 
+      runs-on: windows-2019
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v1
+          with:
+            node-version: 15.10.0
+        - run: npm ci
+        - run: npm test
+        - run: npm run test:coverage
+        - run: npm run executeHint
+        - run: npm run atdd
