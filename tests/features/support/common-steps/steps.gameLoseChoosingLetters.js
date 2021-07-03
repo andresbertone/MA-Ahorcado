@@ -6,7 +6,7 @@ const driver = require('../driver');
 
 
 Given('User lose game choosing wrong letters', async function () {
-    await driver.get("http://127.0.0.1:5500/index.html");
+    await driver.get("https://andresbertone.github.io/MA-Ahorcado/");
 });
 
 When('User choose letter t', async function () {
