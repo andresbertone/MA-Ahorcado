@@ -13,6 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: nanasess/setup-chromedriver@master
     - name: Build the site in the jekyll/builder container
       run: |
         docker run \
