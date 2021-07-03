@@ -12,11 +12,6 @@ jobs:
         - uses: actions/setup-node@v1
           with:
             node-version: 15.10.0
-        - uses: nanasess/setup-chromedriver@master
-          with:
-            # Optional: do not specify to match Chrome's version
-            chromedriver-version: '91.0.4472.101'
-        - run: chromedriver --url-base=/wd/hub &
         - run: npm ci
         - run: npm test
         - run: npm run test:coverage

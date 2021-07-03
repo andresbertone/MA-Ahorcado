@@ -6,8 +6,8 @@ const assert = require("assert").strict;
 
 const driver = require('../driver');
 
-
 setDefaultTimeout(60 * 1000);
+
 
 Given('User win game', async function () {
     await driver.get("https://andresbertone.github.io/MA-Ahorcado/");
