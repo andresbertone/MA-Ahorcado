@@ -13,12 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the site in the jekyll/builder container
-      run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
-    - run: sudo apt-get -yqq install chromium-chromedriver
+    - uses: nanasess/setup-chromedriver@master
+      with:
+        chromedriver-version: '88.0.4324.96'
     - run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
