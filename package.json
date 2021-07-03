@@ -255,7 +255,6 @@
     "yargs-parser": "^20.2.7"
   },
   "scripts": {
-    "test": "jest ahorcado.test.js",
     "test:coverage": "jest --coverage",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
@@ -264,7 +263,8 @@
     "atdd2": "cucumber-js tests/features/gameLoseInputWord.feature --publish-quiet",
     "atdd3": "cucumber-js tests/features/gameWinChoosingLetters.feature --publish-quiet",
     "atdd4": "cucumber-js tests/features/gameLoseChoosingLetters.feature --publish-quiet",
-    "atdd": "npm run atdd1 && npm run atdd2 && npm run atdd3 && npm run atdd4"
+    "atdd": "npm run atdd1 && npm run atdd2 && npm run atdd3 && npm run atdd4",
+    "test": "jest ahorcado.test.js && npm run atdd"
   },
   "repository": {
     "type": "git",
