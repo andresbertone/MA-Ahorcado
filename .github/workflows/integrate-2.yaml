@@ -51,8 +51,10 @@ jobs:
     - shell: pwsh
       run: echo "CHROMEAPP=C:\Program Files\Google\Chrome\Application\chrome.exe" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
     - run: npm ci
-    - run: npm run build
     - run: npm test
+    - run: npm run test:coverage
+    - run: npm run executeHint
+    - run: npm run atdd
     - uses: ./
     - name: setup
       run: |
