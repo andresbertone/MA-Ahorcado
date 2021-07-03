@@ -1,3 +1,5 @@
+name: Integracion Continua
+
 version: 2
 jobs:
   build:
