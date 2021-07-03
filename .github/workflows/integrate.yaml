@@ -18,3 +18,8 @@ jobs:
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+    - run: npm ci
+    - run: npm test
+    - run: npm run test:coverage
+    - run: npm run executeHint
+    - run: npm run atdd
