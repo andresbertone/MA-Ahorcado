@@ -260,10 +260,10 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "executeHint": "jshint src/model/Player.js && jshint src/model/Game.js && jshint src/model/Ranking.js && jshint src/index.js",
-    "atdd1": "./node_modules/.bin/cucumber-js tests/features/gameWinInputWord.feature",
-    "atdd2": "./node_modules/.bin/cucumber-js tests/features/gameLoseInputWord.feature",
-    "atdd3": "./node_modules/.bin/cucumber-js tests/features/gameWinChoosingLetters.feature",
-    "atdd4": "./node_modules/.bin/cucumber-js tests/features/gameLoseChoosingLetters.feature",
+    "atdd1": "cucumber-js tests/features/gameWinInputWord.feature",
+    "atdd2": "cucumber-js tests/features/gameLoseInputWord.feature",
+    "atdd3": "cucumber-js tests/features/gameWinChoosingLetters.feature",
+    "atdd4": "cucumber-js tests/features/gameLoseChoosingLetters.feature",
     "atdd": "npm run atdd1 && npm run atdd2 && npm run atdd3 && npm run atdd4"
   },
   "repository": {
