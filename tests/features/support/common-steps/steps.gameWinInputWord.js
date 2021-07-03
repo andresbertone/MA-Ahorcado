@@ -1,13 +1,13 @@
 const {Given, When, Then} = require('@cucumber/cucumber');
+const {setDefaultTimeout} = require('@cucumber/cucumber');
 
 const {By} = require('selenium-webdriver');
 const assert = require("assert").strict;
 
 const driver = require('../driver');
 
-var {setDefaultTimeout} = require('@cucumber/cucumber');
 
-setDefaultTimeout(60 * 9000);
+setDefaultTimeout(60 * 1000);
 
 Given('User win game', async function () {
     await driver.get("https://andresbertone.github.io/MA-Ahorcado/");
