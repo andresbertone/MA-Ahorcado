@@ -1,28 +1,19 @@
 name: Integracion Continua
 
 on: 
-  push: 
+  push:
     branches: [ main ]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest # Using linux machine
-
-    steps:
-    - uses: actions/checkout@v2 # Checkout the code
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 15.10.0
-    - name: Install Google Chrome # Using shell script to install Google Chrome
-      run: |
-       chmod +x ./scripts/InstallChrome.sh
-        ./scripts/InstallChrome.sh
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew # give permission to Gradle to run the commands
-    - name: Build with Gradle
-      run: ./gradlew test --info # Run our tests using Gradle
-    - run: npm ci
-    - run: npm test
-    - run: npm run test:coverage
-    - run: npm run executeHint
-    - run: npm run atdd
+jobs: 
+    ci_to_main: 
+      runs-on: windows-2019
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v1
+          with:
+            node-version: 15.10.0
+        - run: npm ci
+        - run: npm test
+        - run: npm run test:coverage
+        - run: npm run executeHint
+        - run: npm run atdd
