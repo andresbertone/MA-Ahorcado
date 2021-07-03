@@ -1,6 +1,5 @@
 {
   "devDependencies": {
-    "cucumber": "^7.0.0-rc.0",
     "jest": "^27.0.5",
     "jshint": "^2.13.0",
     "webpack": "^5.40.0",
@@ -11,6 +10,7 @@
   "version": "1.0.0",
   "main": "tests.js",
   "dependencies": {
+    "@cucumber/cucumber": "^7.3.0",
     "abab": "^2.0.5",
     "acorn": "^8.3.0",
     "acorn-globals": "^6.0.0",
@@ -259,8 +259,12 @@
     "test:coverage": "jest --coverage",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "atdd": "node tests/atdd.js",
-    "executeHint": "jshint src/model/Player.js && jshint src/model/Game.js && jshint src/model/Ranking.js && jshint src/index.js"
+    "executeHint": "jshint src/model/Player.js && jshint src/model/Game.js && jshint src/model/Ranking.js && jshint src/index.js",
+    "atdd1": "./node_modules/.bin/cucumber-js tests/features/gameWinInputWord.feature",
+    "atdd2": "./node_modules/.bin/cucumber-js tests/features/gameLoseInputWord.feature",
+    "atdd3": "./node_modules/.bin/cucumber-js tests/features/gameWinChoosingLetters.feature",
+    "atdd4": "./node_modules/.bin/cucumber-js tests/features/gameLoseChoosingLetters.feature",
+    "atdd": "npm run atdd1 && npm run atdd2 && npm run atdd3 && npm run atdd4"
   },
   "repository": {
     "type": "git",

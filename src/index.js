@@ -139,13 +139,14 @@ function iniciarPartida() {
 
   game = new Game();
 
-  game.setAvailableWords(['Agilidad', 'Fabricante', 'Jirafa', 'Cabra', 'Periferico', 'Avion']);
+  // game.setAvailableWords(['Agilidad', 'Fabricante', 'Jirafa', 'Cabra', 'Periferico', 'Avion']);
+  game.setAvailableWords(['Agilidad']);
   game.setMaximumNumberOfErrorsInLetters(6);
   game.setMaximumNumberOfErrorsInWordsInput(3);
   game.chooseRandomWord();
   game.failAttemptsWordChoose = 0;
 
-  puntuacion = 0; // 25 puntos si aciertas; -15 puntos si fallas
+  puntuacion = 0; 
   numIntentos = game.maximumNumberOfErrorsInLetters;
   numIntentosOriginales = numIntentos;
   palabraAdivinar = [];
