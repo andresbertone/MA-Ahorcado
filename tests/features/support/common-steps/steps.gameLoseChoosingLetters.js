@@ -3,10 +3,10 @@ const {Given, When} = require('@cucumber/cucumber');
 const {By} = require('selenium-webdriver');
 
 const driver = require('../driver');
-
+const config = require('../config.json');
 
 Given('User lose game choosing wrong letters', async function () {
-    await driver.get("https://andresbertone.github.io/MA-Ahorcado/");
+    await driver.get(config.URL);
 });
 
 When('User choose letter t', async function () {

@@ -4,10 +4,10 @@ const {By} = require('selenium-webdriver');
 const assert = require("assert").strict;
 
 const driver = require('../driver');
-
+const config = require('../config.json');
 
 Given('User lose game', async function () {
-    await driver.get("https://andresbertone.github.io/MA-Ahorcado/");
+    await driver.get(config.URL);
 });
 
 When('User input the wrong word three times', async function () {
