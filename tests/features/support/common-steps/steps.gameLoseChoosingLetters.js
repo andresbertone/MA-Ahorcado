@@ -7,31 +7,45 @@ const config = require('../config.json');
 
 Given('User lose game choosing wrong letters', async function () {
     await driver.get(config.URL);
+    let alert = await driver.switchTo().alert();
+    setTimeout(async () => {
+        await alert.accept();
+    }, 1000);
 });
 
 When('User choose letter t', async function () {
     setTimeout(async () => {
-        await driver.findElement(By.id('teclat')).click();
+        await driver.findElement(By.id('teclah')).click();
     }, 2000);
 });
 
 When('User choose letter y', async function () {
-    await driver.findElement(By.id('teclay')).click();
+    setTimeout(async () => {
+        await driver.findElement(By.id('teclas')).click();
+    }, 3000);
 });
 
 
 When('User choose letter r', async function () {
-    await driver.findElement(By.id('teclar')).click();
+    setTimeout(async () => {
+        await driver.findElement(By.id('teclap')).click();
+    }, 4000);
 });
 
 When('User choose letter p', async function () {
-    await driver.findElement(By.id('teclap')).click();
+    setTimeout(async () => {
+        await driver.findElement(By.id('teclak')).click();
+    }, 5000);
 });
 
 When('User choose letter m', async function () {
-    await driver.findElement(By.id('teclam')).click();
+    setTimeout(async () => {
+        await driver.findElement(By.id('teclaq')).click();
+    }, 6000);
 });
 
 When('User choose letter q', async function () {
-    await driver.findElement(By.id('teclaq')).click();
+    setTimeout(async () => {
+        await driver.findElement(By.id('teclat')).click();
+    }, 7000);
 });

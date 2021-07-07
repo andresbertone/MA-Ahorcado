@@ -8,6 +8,10 @@ const config = require('../config.json');
 
 Given('User lose game', async function () {
     await driver.get(config.URL);
+    let alert = await driver.switchTo().alert();
+    setTimeout(async () => {
+        await alert.accept();
+    }, 1000);
 });
 
 When('User input the wrong word three times', async function () {
@@ -36,5 +40,5 @@ Then('User should see message Perdiste', async function () {
         let strResult = await objResult.getText();
         assert.equal(strResult, 'PERDISTE');
         driver.quit();
-    }, 9000);
+    }, 8000);
 });

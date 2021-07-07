@@ -9,6 +9,7 @@ let numIntentosOriginales;
 let palabraAdivinar;
 let palabraMostrar;
 let teclasBloqueadas; 
+let isLogged = false;
 
 let nodoResultado = document.querySelector('#resultado').firstChild;
 let nodoIntentos = document.querySelector('#intentos');
@@ -138,6 +139,11 @@ let stateGame = document.getElementById('stateGame');
 function iniciarPartida() {
 
   game = new Game();
+
+  if (!isLogged) { //Si ya se logueó no vuelvo a mostrar la bienvenida
+    isLogged = true;
+    alert(game.login());
+  }
 
   // game.setAvailableWords(['Agilidad', 'Fabricante', 'Jirafa', 'Cabra', 'Periferico', 'Avion']);
   game.setAvailableWords(['Agilidad']);
