@@ -3,7 +3,7 @@ import Game from "./model/Game";
 // Inicializamos un juego nuevo
 let game;
 
-let puntuacion; // 25 puntos si aciertas; -15 puntos si fallas
+let puntuacion; // 1 punto si acierta la letra; 10 puntos si acierta la palabra; NO resta puntos si falla
 let numIntentos;
 let numIntentosOriginales;
 let palabraAdivinar;
@@ -105,8 +105,9 @@ let stateGame = document.getElementById('stateGame');
     document.getElementById(teclasBloqueadas[i]).className = "tecla";
   }
 
-  document.getElementById('riskedWordButton').className = "tecla";
+  document.getElementById('riskFieldWord').disabled = false;
   document.getElementById('riskedWordButton').disabled = false;
+  document.getElementById('riskedWordButton').className = "tecla";
 
   // Vaciamos el array de teclas bloqueadas una vez se hayan
   // desbloqueado las teclas
@@ -133,6 +134,8 @@ let stateGame = document.getElementById('stateGame');
     teclasBloqueadas.push(teclas[i].id);
   }
 
+  document.getElementById('riskFieldWord').disabled = true;
+  document.getElementById('riskedWordButton').disabled = true;
   document.getElementById('riskedWordButton').className = "teclaDeshabilitada";
 }
 

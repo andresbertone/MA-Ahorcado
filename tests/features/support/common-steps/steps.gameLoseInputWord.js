@@ -6,6 +6,7 @@ const assert = require("assert").strict;
 const driver = require('../driver');
 const config = require('../config.json');
 
+
 Given('User lose game', async function () {
     await driver.get(config.URL);
     let alert = await driver.switchTo().alert();
@@ -13,6 +14,7 @@ Given('User lose game', async function () {
         await alert.accept();
     }, 1000);
 });
+
 
 When('User input the wrong word three times', async function () {
     // first attempt
@@ -33,6 +35,7 @@ When('User input the wrong word three times', async function () {
         await driver.findElement(By.id('riskedWordButton')).click();
     }, 6000);
 });
+
 
 Then('User should see message Perdiste', async function () {
     setTimeout( async () => {

@@ -14,6 +14,7 @@ Given('User win game choosing correct letters', async function () {
     }, 1000);
 });
 
+
 When('User choose letter a', async function () {
     setTimeout(async () => {
         await driver.findElement(By.id('teclaa')).click();
@@ -43,4 +44,3 @@ When('User choose letter d', async function () {
         await driver.findElement(By.id('teclad')).click();
     }, 6000);
 });
-

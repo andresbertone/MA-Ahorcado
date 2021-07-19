@@ -18,6 +18,7 @@ Given('User win game', async function () {
     }, 1000);
 });
 
+
 When('User input the correct word', async function () {
     setTimeout(async () => {
         await driver.findElement(By.id('riskFieldWord')).sendKeys('agilidad');
@@ -26,6 +27,7 @@ When('User input the correct word', async function () {
         }, 2000);
     }, 4000);
 });
+
 
 Then('User should see message Ganaste', async function () {
     setTimeout( async () => {
