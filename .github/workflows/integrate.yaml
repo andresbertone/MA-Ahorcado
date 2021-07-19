@@ -12,7 +12,11 @@ jobs:
         - uses: actions/setup-node@v1
           with:
             node-version: 15.10.0
-        - run: npm ci
-        - run: npm test
-        - run: npm run test:coverage
-        - run: npm run executeHint
+        - name: Execute CI
+          run: npm ci
+        - name: Execute Tests
+          run: npm test
+        - name: Execute Coverage 
+          run: npm run test:coverage
+        - name: Execute Static Analysis
+          run: npm run executeHint
