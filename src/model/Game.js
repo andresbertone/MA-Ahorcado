@@ -5,39 +5,51 @@ class Game {
     player() {
         return this.player;
     } //Jugador
+
     word() {
         return this.word;
     } //Palabra a adivinar
+
     correctLetters() {
         return this.correctLetters;
     } //Guarda las letras erróneas ingresadas
+
     wrongLetters() {
         return this.wrongLetters;
     } //Guarda las letras erróneas ingresadas
+
     availableWords() {
         return this.availableWords;
     } //Ingreso de múltiples palabras para adivinar
+
     maximumNumberOfErrorsInLetters() {
         return this.maximumNumberOfErrorsInLetters;
     } //Número maximo de errores al ingresar letras
+
     maximumNumberOfErrorsInWordsInput() {
         return this.maximumNumberOfErrorsInWordsInput;
     } //Número maximo de errores al arriesgar la palabra
+
     failAttemptsWordChoose() {
         return this.failAttemptsWordChoose;
     } //Intentos que falló al arriesgar la palabra
+
     timeLimitInMinutes() {
         return this.timeLimitInMinutes;
     } //Tiempo limite de juego en minutos
+
     difficulty() {
         return this.difficulty;
     } //Dificultad del juego
+
     lengthForEachDifficulty() {
         return this.lengthForEachDifficulty;
     } //Logitud mínima de caracteres por dificultad
+
     totalScore() {
         return this.totalScore;
     } // Guarda el puntaje total
+
     riskedWord() { 
         return this.riskedWord;
     } //Palabra arriesgada
@@ -55,6 +67,14 @@ class Game {
     }
 
 
+    useHint() {
+        for (let i = 0; i < this.word.length ; i++) {
+            if ( this.correctLetters.indexOf(this.word[i]) < 0) {
+                return this.word[i];
+            }
+        }
+    }
+    
     setLengthWordForEachDifficulty( difficulties ) {
         if( difficulties ){ 
             this.lengthForEachDifficulty = difficulties;
@@ -162,7 +182,7 @@ class Game {
 
     inputWord( wordInput ) {
         if ( wordInput ) {
-            this.word = wordInput;
+            this.word = wordInput.toLowerCase();
             return 'Palabra guardada';
         }
     }
@@ -177,6 +197,9 @@ class Game {
                 return 'Letra correcta';
             }
             this.wrongLetters.push( letter );
+            if ( this.totalScore !== 0 ) {
+                this.totalScore -= 1;
+            }
             return 'Letra incorrecta';
         }
     }

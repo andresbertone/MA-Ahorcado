@@ -259,6 +259,7 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "executeHint": "jshint src/model/Player.js && jshint src/model/Game.js && jshint src/model/Ranking.js && jshint src/index.js",
+    "tdd": "jest ahorcado.test.js",
     "atdd1": "cucumber-js tests/features/gameWinInputWord.feature --publish-quiet",
     "atdd2": "cucumber-js tests/features/gameLoseInputWord.feature --publish-quiet",
     "atdd3": "cucumber-js tests/features/gameWinChoosingLetters.feature --publish-quiet",

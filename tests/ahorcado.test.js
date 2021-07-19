@@ -219,9 +219,25 @@ describe('Test Release 3', () => {
             let game = new Game();
             expect(game.setLengthWordForEachDifficulty([{difficulty: 1, length: 4}, {difficulty: 2, length: 6}, {difficulty: 3, length: 8}]))
                 .toBe('Fácil: 4, Intermedio: 6, Difícil: 8');
-        });    
+        });
+        
+        // it(`Set word's language`, () => {
+        //     let game = new Game();
+        //     expect(game.setLanguage('Ingles')).toBe('Idioma elegido: Ingles');
+        // });
     });
     
+
+    describe('Start to play', () => {
+
+        it('Use hint', () => {
+            let game = new Game();
+            game.inputWord('Agilidad');
+            game.chooseLetter('g');
+            game.chooseLetter('i');
+            expect(game.useHint()).toBe('a');
+        });
+    });
 
     describe('Final Score', () => {
 
