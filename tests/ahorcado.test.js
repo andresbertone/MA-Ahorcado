@@ -220,11 +220,6 @@ describe('Test Release 3', () => {
             expect(game.setLengthWordForEachDifficulty([{difficulty: 1, length: 4}, {difficulty: 2, length: 6}, {difficulty: 3, length: 8}]))
                 .toBe('Fácil: 4, Intermedio: 6, Difícil: 8');
         });
-        
-        // it(`Set word's language`, () => {
-        //     let game = new Game();
-        //     expect(game.setLanguage('Ingles')).toBe('Idioma elegido: Ingles');
-        // });
     });
     
 
