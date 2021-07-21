@@ -148,8 +148,8 @@ function iniciarPartida() {
     alert(game.login());
   }
 
-  game.setAvailableWords(['Agilidad', 'Fabricante', 'Jirafa', 'Cabra', 'Periferico', 'Avion']);
-  // game.setAvailableWords(['Agilidad']);
+  // game.setAvailableWords(['Agilidad', 'Fabricante', 'Jirafa', 'Cabra', 'Periferico', 'Avion']);
+  game.setAvailableWords(['Agilidad']);
   game.setMaximumNumberOfErrorsInLetters(6);
   game.setMaximumNumberOfErrorsInWordsInput(3);
   game.chooseRandomWord();
