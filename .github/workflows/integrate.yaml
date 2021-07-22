@@ -15,4 +15,4 @@ jobs:
         - name: Execute CI
           run: npm ci
         - name: checkout
-          run: git merge develop
+          run: git checkout main
