@@ -2,7 +2,7 @@ name: Integracion Continua
 
 on: 
   push:
-    branches: [ main ]
+    branches: [ develop ]
 
 jobs: 
     ci_to_main: 
@@ -20,3 +20,8 @@ jobs:
           run: npm run test:coverage
         - name: Execute Static Analysis
           run: npm run executeHint
+        - name: Merge main
+          run: git checkout main 
+          run: git merge develop
+          run: git commit -m "Merge main"
+          run: git push 
