@@ -1,4 +1,3 @@
-
 class Ranking {
 
     games() {
@@ -34,8 +33,6 @@ class Ranking {
         return playerNames;
     }
 
-
 }
-
 
 module.exports = Ranking;

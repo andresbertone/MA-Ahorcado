@@ -1,4 +1,4 @@
-const Player = require('./Player');
+const Player = require('./Player.js');
 
 class Game {
 
@@ -54,6 +54,7 @@ class Game {
         return this.riskedWord;
     } //Palabra arriesgada
 
+    
     constructor() {
         this.player = new Player();
         this.correctLetters = [];
@@ -75,6 +76,7 @@ class Game {
         }
     }
     
+
     setLengthWordForEachDifficulty( difficulties ) {
         if( difficulties ){ 
             this.lengthForEachDifficulty = difficulties;
@@ -85,6 +87,7 @@ class Game {
             }
         }
     }
+
 
     setDifficulty( difficulty ) {
         if ( difficulty ) {
@@ -104,8 +107,8 @@ class Game {
             return `Dificultad elegida: ${nameDifficulty}`;
         }
     }
-
     
+
     getIncorrectLetter( inputLetter ) {
         if ( inputLetter ) {
             if ( !this.word.includes( inputLetter ) ) {
@@ -113,6 +116,7 @@ class Game {
             }
         }
     }
+
 
     chooseRandomWord() {
         let index = 0;
@@ -125,8 +129,8 @@ class Game {
         this.inputWord( this.availableWords[index].toLowerCase() );
         return this.availableWords.includes( this.word );
     }
-
     
+
     chooseRiskyWord( selectedWord ) {
         this.riskedWord = selectedWord.toLowerCase();
         if ( this.word.toLowerCase() === this.riskedWord ) { 
@@ -136,9 +140,11 @@ class Game {
         }
     }
     
+
     getRandomInt(min, max) {
         return Math.floor(Math.random() * (max + 1 - min)) + min;
     }
+
 
     setTimeLimit( timeLimit ) {
         if ( timeLimit ) {
@@ -148,6 +154,7 @@ class Game {
         return 'Debe ingresar el tiempo';
     }
     
+
     setMaximumNumberOfErrorsInWordsInput( maximumNumberOfErrorsInWordsInput ) {
         if ( maximumNumberOfErrorsInWordsInput ) {
             this.maximumNumberOfErrorsInWordsInput = maximumNumberOfErrorsInWordsInput;
@@ -155,6 +162,7 @@ class Game {
         }
         return 'Debe ingresar la cantidad máxima de errores';
     }
+
 
     setMaximumNumberOfErrorsInLetters( maximumNumberOfErrorsInLetters ) {
         if ( maximumNumberOfErrorsInLetters ) {
@@ -164,6 +172,7 @@ class Game {
         return 'Debe ingresar la cantidad máxima de errores';
     }
     
+
     setAvailableWords( availableWords ) {
         if ( availableWords ) {
             this.availableWords = availableWords;
@@ -172,13 +181,16 @@ class Game {
         return 'Debe ingresar al menos una palabra';
     }
 
+
     login ( name ) {
         return this.player.login( name );
     }
 
+
     loginUserAndPassword ( username, password ) {
         return this.player.loginUserAndPassword( username, password );
     }
+
 
     inputWord( wordInput ) {
         if ( wordInput ) {
@@ -187,6 +199,7 @@ class Game {
         }
     }
     
+
     chooseLetter( letter ) {
         if ( letter ) {
             let index = this.word.toLowerCase().indexOf( letter.toLowerCase() );
@@ -204,6 +217,7 @@ class Game {
         }
     }
     
+
     letterPosition( letter ) {
         if ( letter ) {
             let index = this.word.toLowerCase().indexOf( letter.toLowerCase() );
@@ -212,6 +226,7 @@ class Game {
             }
         }
     }
+
 
     howManyTimesLetterAppear( letter, index ) {
         let indices = [];
@@ -223,8 +238,8 @@ class Game {
         return indices;
     }
     
-    getScore() {
 
+    getScore() {
         if (this.word === this.riskedWord) {
             this.riskedWord = undefined;   
             return 'Ganaste';
@@ -242,6 +257,7 @@ class Game {
        }   
 
     }
+
 
     getScoreInNumbers() {
         return this.totalScore;

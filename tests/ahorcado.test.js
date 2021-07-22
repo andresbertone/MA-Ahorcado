@@ -1,6 +1,7 @@
 const Game = require('../src/model/Game');
 const Ranking = require('../src/model/Ranking');
 
+
 describe('Tests Release 1', () => {
 
     describe('Login', () => {

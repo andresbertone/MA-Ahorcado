@@ -1,5 +1,9 @@
 {
-    "esnext": true,
-    "curly": true,
-    "eqeqeq": true
+    "esnext": true,     // Valida que la sintaxis sea la apropiada para ECMAScript 6
+    "curly": true,      // Valida el uso de llaves en bucles o if's
+    "eqeqeq": true,     // Valida el uso de === ó !==
+    "unused": true,     // Valida que las variables que hayan sido definidas, sean usadas
+    "latedef": true,    // Valida que las variables o funciones definidas, sean usadas posteriormente
+    "leanswitch": true, // Valida que no se agreguen cláusulas innecesarias a la sentencia switch
+    "maxcomplexity": 10 // Valida la complejidad ciclomática. En este caso, que no exceda de 10
 }

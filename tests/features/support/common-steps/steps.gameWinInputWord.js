@@ -1,4 +1,4 @@
-const {Given, When, Then} = require('@cucumber/cucumber');
+const {When, Then} = require('@cucumber/cucumber');
 const {setDefaultTimeout} = require('@cucumber/cucumber');
 
 const {By} = require('selenium-webdriver');
@@ -8,15 +8,6 @@ const driver = require('../driver');
 const config = require('../config.json');
 
 setDefaultTimeout(60 * 1000);
-
-
-Given('User win game', async function () {
-    await driver.get(config.URL);
-    let alert = await driver.switchTo().alert();
-    setTimeout(async () => {
-        await alert.accept();
-    }, 1000);
-});
 
 
 When('User input the correct word', async function () {

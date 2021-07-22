@@ -3,9 +3,11 @@ class Player {
     name() {
         return this.name;
     }
+
     users() {
         return this.users;
     } //Posee los usuarios que existen en el juego
+
     userLogged() {
         return this.userLogged;
     }
@@ -42,7 +44,6 @@ class Player {
             return found;
         }
     }
-
 
 }
 

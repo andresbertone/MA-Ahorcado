@@ -6,7 +6,7 @@ const driver = require('../driver');
 const config = require('../config.json');
 
 
-Given('User lose game choosing wrong letters', async function () {
+Given('User logs in', async function () {
     await driver.get(config.URL);
     let alert = await driver.switchTo().alert();
     setTimeout(async () => {
