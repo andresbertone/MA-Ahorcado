@@ -14,5 +14,5 @@ jobs:
             node-version: 15.10.0
         - name: Execute CI
           run: npm ci
-        - name: commit
-          run: git add .
+        - name: checkout
+          run: git merge develop
