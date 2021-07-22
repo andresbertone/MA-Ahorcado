@@ -21,7 +21,4 @@ jobs:
         - name: Execute Static Analysis
           run: npm run executeHint
         - name: Merge main
-          run: git checkout main 
-          run: git merge develop
-          run: git commit -m "Merge main"
-          run: git push 
+          run: git checkout main
