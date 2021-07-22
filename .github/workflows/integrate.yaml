@@ -14,9 +14,5 @@ jobs:
             node-version: 15.10.0
         - name: Execute CI
           run: npm ci
-        - name: Execute Tests
-          run: npm test
-        - name: Execute Coverage 
-          run: npm run test:coverage
-        - name: Execute Static Analysis
-          run: npm run executeHint
+        - name: commit
+          run: git add .
