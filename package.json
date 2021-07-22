@@ -265,8 +265,8 @@
     "atdd3": "cucumber-js tests/features/gameWinChoosingLetters.feature --publish-quiet",
     "atdd4": "cucumber-js tests/features/gameLoseChoosingLetters.feature --publish-quiet",
     "atdd": "npm run atdd1 && npm run atdd2 && npm run atdd3 && npm run atdd4",
-    "test": "jest ahorcado.test.js && npm run atdd",
-    "merge": "git merge main"
+    "test": "jest ahorcado.test.js && npm run atdd"
+    
   },
   "repository": {
     "type": "git",
