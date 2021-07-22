@@ -2,7 +2,7 @@ name: Integracion Continua
 
 on: 
   push:
-    branches: [ develop ]
+    branches: [ main ]
 
 jobs: 
     ci_to_main: 
@@ -14,5 +14,9 @@ jobs:
             node-version: 15.10.0
         - name: Execute CI
           run: npm ci
-        - name: checkout
-          run: git checkout main
+        - name: Execute Tests
+          run: npm test
+        - name: Execute Coverage 
+          run: npm run test:coverage
+        - name: Execute Static Analysis
+          run: npm run executeHint

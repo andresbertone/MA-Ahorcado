@@ -143,7 +143,7 @@ function gameLost() {
   document.getElementById('imagen').src = 'img/svg/piernaDer.svg';
   puntuacion = game.getScoreInNumbers();
   
-  actualizarDatosPantalla();
+  actualizarDatosPantalla()
 }
 
 
