@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1626992435515" clover="3.2.0">
-  <project timestamp="1626992435515" name="All files">
+<coverage generated="1627078447595" clover="3.2.0">
+  <project timestamp="1627078447596" name="All files">
     <metrics statements="137" coveredstatements="109" conditionals="66" coveredconditionals="45" methods="48" coveredmethods="31" elements="251" coveredelements="185" complexity="0" loc="137" ncloc="137" packages="1" files="3" classes="3"/>
     <file name="Game.js" path="E:\Metodologías-Agiles_Ejercicios\Juego_Ahorcado\MA-Ahorcado\src\model\Game.js">
       <metrics statements="106" coveredstatements="85" conditionals="52" coveredconditionals="35" methods="35" coveredmethods="22"/>
