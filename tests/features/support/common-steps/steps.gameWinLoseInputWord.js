@@ -1,10 +1,12 @@
 const {When, Then} = require('@cucumber/cucumber');
+const {setDefaultTimeout} = require('@cucumber/cucumber');
 
 const {By} = require('selenium-webdriver');
 const assert = require("assert").strict;
 
 const driver = require('../driver');
 
+setDefaultTimeout(60 * 1000);
 
 When('User input the word {string}', async function(riskyWord) {
     setTimeout( async () => {
