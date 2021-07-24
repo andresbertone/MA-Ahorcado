@@ -4,7 +4,7 @@ const Game = require('./model/Game');
 let game;
 
 let puntuacion; // 1 punto si acierta la letra; 10 puntos si acierta la palabra; NO resta puntos si falla
-let numIntentos;
+let numIntentos
 let numIntentosOriginales;
 let palabraAdivinar;
 let palabraMostrar;
