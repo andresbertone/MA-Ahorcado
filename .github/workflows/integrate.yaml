@@ -2,7 +2,7 @@ name: Integracion Continua
 
 on: 
   push:
-    branches: [ main ]
+    branches: [ develop ]
 
 jobs: 
     ci_to_main: 
