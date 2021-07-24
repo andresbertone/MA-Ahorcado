@@ -8,6 +8,7 @@ const driver = require('../driver');
 
 setDefaultTimeout(60 * 1000);
 
+
 When('User input the word {string}', async function(riskyWord) {
     setTimeout( async () => {
         await driver.findElement(By.id('riskFieldWord')).sendKeys(riskyWord);
