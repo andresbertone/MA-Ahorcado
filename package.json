@@ -8,7 +8,7 @@
   "name": "MA-Ahorcado",
   "description": "",
   "version": "1.0.0",
-  "main": "ahorcado.test.js",
+  "main": "index.html",
   "dependencies": {
     "@cucumber/cucumber": "^7.3.0",
     "abab": "^2.0.5",
